@@ -1,6 +1,6 @@
 package com.example.myapplication.models;
 
-public class establishment {
+public class Establishment {
     public String title;
     public String imageName;
     public String description;
