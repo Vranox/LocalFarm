@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.dashboard;
+package com.example.localfarm.ui.dashboard;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.myapplication.databinding.FragmentDashboardBinding;
+import com.example.localfarm.databinding.FragmentDashboardBinding;
 
 public class DashboardFragment extends Fragment {
 

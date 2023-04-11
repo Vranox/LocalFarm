@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "253785445497",
+    "project_id": "localfarm-a7781",
+    "storage_bucket": "localfarm-a7781.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253785445497:android:2d9fef9e7563efe3d7f0a8",
+        "android_client_info": {
+          "package_name": "com.example.localfarm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253785445497-e9cvqq5s9cmc9eoqtvbegl92fdjri374.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXrnUL0MCnJgqsdqubiTQfP9QsY2IOaRA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253785445497-e9cvqq5s9cmc9eoqtvbegl92fdjri374.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

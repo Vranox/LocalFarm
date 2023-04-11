@@ -1,8 +1,15 @@
-package com.example.myapplication;
+package com.example.localfarm;
 
 import android.os.Bundle;
 
+import com.example.localfarm.databinding.ActivityMainBinding;
+import com.example.localfarm.models.Establishment;
+import com.example.localfarm.models.Schedule;
+import com.example.localfarm.models.Time;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -10,7 +17,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.myapplication.databinding.ActivityMainBinding;
+import java.time.LocalTime;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +26,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        FirebaseApp.initializeApp(this);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference establishmentRef = database.getReference("establishment");
+        String key = establishmentRef.push().getKey();
+        establishmentRef.child(key).setValue(
+                new Establishment("La ferme d'antan","Ferme familial",new Schedule(new Time(8,30),new Time(12,30),new Time(13,30),new Time(18,30))));
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
