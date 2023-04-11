@@ -3,4 +3,11 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name= "label">Label</string>
+    <string name= "delivered_state">Livré</string>
+    <string name= "ongoing_state">En cours</string>
+    <string name= "cancelled_state">Annulé</string>
+    <string name = "total">Total=XXX€</string>
+    <string name= "destination">De XXXXX à XXXXX</string>
+    <string name= "date">Le XX/XX/XX à XX:XX</string>
 </resources>
