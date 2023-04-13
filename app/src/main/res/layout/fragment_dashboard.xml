@@ -41,5 +41,14 @@
         app:queryBackground="@null"
         app:iconifiedByDefault="false"
         app:queryHint="Search"/>
+    <Button
+        android:id="@+id/buttonadd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/search_main"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Add establishment"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
