@@ -1,4 +1,4 @@
-package com.example.localfarm;
+package com.example.localfarm.activity;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.localfarm.R;
 import com.example.localfarm.databinding.ActivityMainBinding;
 import com.example.localfarm.models.Establishment;
 import com.example.localfarm.models.Schedule;

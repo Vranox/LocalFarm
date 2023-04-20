@@ -14,6 +14,7 @@ public class Schedule {
         this.startAfternoon = startAfternoon;
         this.endAfternoon = endAfternoon;
     }
+    public Schedule(){}
 
     public Time getStartMorning() {
         return startMorning;
@@ -41,6 +42,15 @@ public class Schedule {
             return true;
         }
         return false;
+    }
+
+    public Time getCloseTime(Time time) {
+        if(time.compareTo(endMorning)<1){
+            return endMorning;
+        }
+        else {
+            return endAfternoon;
+        }
     }
 }
 
