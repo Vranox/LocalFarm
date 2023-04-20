@@ -2,6 +2,10 @@ package com.example.localfarm.models;
 
 import com.google.firebase.database.PropertyName;
 
+import java.time.LocalTime;
+import java.util.Calendar;
+import java.util.Date;
+
 public class Time implements Comparable<Time>{
     @PropertyName("hour")
     private int hour;
@@ -11,6 +15,11 @@ public class Time implements Comparable<Time>{
     public Time(int hour, int minutes){
         this.hour = hour;
         this.minutes = minutes;
+    }
+    public Time(){
+        Calendar calendar = Calendar.getInstance();
+        this.hour = calendar.get(Calendar.HOUR_OF_DAY);
+        this.minutes = calendar.get(Calendar.MINUTE);
     }
 
     @PropertyName("hour")
@@ -38,5 +47,9 @@ public class Time implements Comparable<Time>{
                 return 0;
             }
         }
+    }
+    @Override
+    public String toString(){
+        return hour + ":" + minutes;
     }
 }
