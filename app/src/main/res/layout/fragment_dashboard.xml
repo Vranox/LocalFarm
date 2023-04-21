@@ -23,18 +23,18 @@
 
     <SearchView
         android:id="@+id/search_main"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_title"
-        app:layout_constraintWidth_default="spread"
         android:background="@drawable/search_view_background"
         android:iconifiedByDefault="false"
-        android:imeOptions="actionSearch"
         android:queryHint="Rechercher"
-        app:searchIcon="@drawable/ic_baseline_search_24"
-        app:queryBackground="@null"
-        app:iconifiedByDefault="false"
+        android:searchIcon="@drawable/ic_baseline_search_24"
+        style="@style/SearchViewStyle"
         />
 
     <Button
