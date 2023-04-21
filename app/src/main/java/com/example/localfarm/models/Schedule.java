@@ -1,7 +1,5 @@
 package com.example.localfarm.models;
 
-import java.time.LocalTime;
-
 public class Schedule {
     private Time startMorning;
     private Time endMorning;

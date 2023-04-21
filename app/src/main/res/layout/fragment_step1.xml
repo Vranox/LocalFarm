@@ -3,7 +3,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- First line with small input field -->
     <EditText
         android:id="@+id/editText1"
         android:layout_width="match_parent"
@@ -14,7 +13,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
-    <!-- Second line with description input field -->
     <EditText
         android:id="@+id/editText2"
         android:layout_width="match_parent"
@@ -25,7 +23,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
-    <!-- Card with rounded corners and text explanation -->
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
@@ -63,7 +60,6 @@
 
     </androidx.cardview.widget.CardView>
 
-    <!-- Image to illustrate the screen -->
     <ImageView
         android:layout_width="250dp"
         android:layout_height="250dp"
