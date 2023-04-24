@@ -87,26 +87,26 @@ public class DashboardFragment extends Fragment {
         binding = null;
     }
 
-    private void addEstablishment() {
-        System.out.println("establishmentRef: " + establishmentRef);
-        String key = establishmentRef.push().getKey();
-        System.out.println("Generated key: " + key);
-
-        Establishment newEstablishment = new Establishment("La ferme d'antan", "Ferme familial", new Schedule(new Time(8, 30), new Time(12, 30), new Time(13, 30), new Time(18, 30)));
-        System.out.println("New establishment: " + newEstablishment);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        establishmentRef.child(key).setValue(newEstablishment)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            System.out.println("Establishment added successfully");
-                        } else {
-                            System.out.println("Failed to add establishment: " + task.getException());
-                        }
-                    }
-                });
-    }
+//    private void addEstablishment() {
+//        System.out.println("establishmentRef: " + establishmentRef);
+//        String key = establishmentRef.push().getKey();
+//        System.out.println("Generated key: " + key);
+//
+//        Establishment newEstablishment = new Establishment("La ferme d'antan", "Ferme familial", new Schedule(new Time(8, 30), new Time(12, 30), new Time(13, 30), new Time(18, 30)));
+//        System.out.println("New establishment: " + newEstablishment);
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        establishmentRef.child(key).setValue(newEstablishment)
+//                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful()) {
+//                            System.out.println("Establishment added successfully");
+//                        } else {
+//                            System.out.println("Failed to add establishment: " + task.getException());
+//                        }
+//                    }
+//                });
+//    }
     private void getEstablishment() {
         establishmentRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

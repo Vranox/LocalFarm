@@ -1,13 +1,15 @@
 package com.example.localfarm.models;
 
+import java.util.Map;
+
 public class Establishment {
     public String title;
     public String imageName;
     public String description;
-    public Schedule horaires;
+    public Map<String,Schedule> horaires;
     public Position position;
 
-    public Establishment(String title, String description, Schedule horaires) {
+    public Establishment(String title, String description, Map<String,Schedule> horaires) {
         this.title = title;
         this.description = description;
         this.horaires = horaires;
@@ -39,12 +41,12 @@ public class Establishment {
         this.description = description;
     }
 
-    public Schedule getHoraires() {
-        return horaires;
+    public Schedule getHoraires(String dayOfWeek) {
+        return horaires.get(dayOfWeek);
     }
 
-    public void setHoraires(Schedule horaires) {
-        this.horaires = horaires;
+    public void setHoraires(String dayOfWeek,Schedule horaires) {
+        this.horaires.put(dayOfWeek,horaires);
     }
     @Override
     public String toString() {

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.localfarm.R;
 import com.example.localfarm.models.Establishment;
+import com.example.localfarm.models.Schedule;
 import com.example.localfarm.models.Time;
 
 import java.time.LocalTime;
@@ -38,8 +39,20 @@ public class EstablishmentAdapter extends RecyclerView.Adapter<EstablishmentAdap
             // Bind data to views
             nameTextView.setText(establishment.getTitle());
             distanceTextView.setText("1km");
-            isOpenTextView.setText(establishment.getHoraires().isAvailable(new Time())? "Ouvert" : "Fermé");
-            closingTimeTextView.setText(establishment.getHoraires().isAvailable(new Time())?" Ferme à " + establishment.getHoraires().getCloseTime(new Time()) : "Ouvre à " + new Time());
+            Time timeOfNow = new Time();
+            Schedule schedule = establishment.getHoraires(timeOfNow.getDayOfWeek());
+            if (schedule != null) {
+                if (schedule.isAvailable(timeOfNow)) {
+                    isOpenTextView.setText("Ouvert");
+                    closingTimeTextView.setText(" Ferme à " + schedule.getCloseTime(timeOfNow));
+                } else {
+                    isOpenTextView.setText("Fermé");
+                    closingTimeTextView.setText("Ouvre à " + timeOfNow);
+                }
+            } else {
+                isOpenTextView.setText("Non disponible");
+                closingTimeTextView.setText("");
+            }
 
             // Set click listener on the view
             itemView.setOnClickListener(new View.OnClickListener() {

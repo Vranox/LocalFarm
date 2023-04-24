@@ -11,6 +11,8 @@ public class Time implements Comparable<Time>{
     private int hour;
     @PropertyName("minutes")
     private int minutes;
+    @PropertyName("dayOfWeek")
+    private String dayOfWeek;
 
     public Time(int hour, int minutes){
         this.hour = hour;
@@ -20,6 +22,11 @@ public class Time implements Comparable<Time>{
         Calendar calendar = Calendar.getInstance();
         this.hour = calendar.get(Calendar.HOUR_OF_DAY);
         this.minutes = calendar.get(Calendar.MINUTE);
+
+        int calendarDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        // Subtract 2 because Calendar.SUNDAY == 1 and DayOfWeek.SUNDAY.ordinal() == 6
+        int enumIndex = (calendarDayOfWeek + 5) % 7;
+        this.dayOfWeek = DayOfWeek.values()[enumIndex].toString();
     }
 
     @PropertyName("hour")
@@ -51,5 +58,9 @@ public class Time implements Comparable<Time>{
     @Override
     public String toString(){
         return hour + ":" + minutes;
+    }
+
+    public String getDayOfWeek() {
+        return dayOfWeek;
     }
 }
