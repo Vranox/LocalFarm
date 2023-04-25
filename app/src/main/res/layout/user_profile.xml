@@ -117,6 +117,18 @@
             android:layout_marginBottom="30dp"
             />
 
+        <Button
+            android:id="@+id/add_contact"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Ajouter en contact"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/black"
+            android:backgroundTint="#FFFFFF"
+            android:layout_marginBottom="30dp"
+            />
+
         <!-- Bouton de déconnexion -->
         <Button
             android:id="@+id/logout_button"
