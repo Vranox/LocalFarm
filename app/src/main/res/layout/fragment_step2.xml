@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/dayLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Lundi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.13"
+            android:text="Lun"
+            android:gravity="center"
+            android:background="@drawable/selected_background"
+            android:layout_marginStart="4dp" />
+
+        <TextView
+            android:id="@+id/Mardi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.13"
+            android:text="Mar"
+            android:gravity="center"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/search_view_background" />
+
+        <TextView
+            android:id="@+id/Mercredi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.13"
+            android:text="Mer"
+            android:gravity="center"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/search_view_background" />
+
+        <TextView
+            android:id="@+id/Jeudi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.13"
+            android:text="Jeu"
+            android:gravity="center"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/search_view_background" />
+
+        <TextView
+            android:id="@+id/Vendredi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.13"
+            android:text="Ven"
+            android:gravity="center"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/search_view_background" />
+
+        <TextView
+            android:id="@+id/Samedi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.13"
+            android:text="Sam"
+            android:gravity="center"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/search_view_background" />
+
+        <TextView
+            android:id="@+id/Dimanche"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.13"
+            android:text="Dim"
+            android:gravity="center"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/search_view_background" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/toggleLayout"
+        android:layout_width="0dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/dayLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/textOpenclose"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@android:color/holo_red_dark"
+            android:text="Fermé"
+            android:gravity="center_vertical"/>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/toggleOpenClose"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+        </com.google.android.material.switchmaterial.SwitchMaterial>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/card_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toggleLayout"
+        android:id="@+id/scheduleSelectionLayout"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="7dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/morningTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Matin"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/blue_700"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="15dp">
+                        <EditText
+                            android:id="@+id/morningTime1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="08:30"
+                            android:background="@drawable/edit_text_background"
+                            android:focusable="false"
+                            android:inputType="none"
+                            android:layout_marginRight="10dp"
+                            />
+                        <TextView
+                            android:id="@+id/a1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="à"
+                            android:textSize="20dp"
+                            />
+                        <EditText
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/morningTime2"
+                            android:background="@drawable/edit_text_background"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12:30"
+                            android:focusable="false"
+                            android:inputType="none"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+            <CheckBox
+                android:id="@+id/morningCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+                android:checked="true"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <androidx.cardview.widget.CardView
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="7dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/afternoonTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Après-midi"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:gravity="center_horizontal"
+                        android:textColor="@android:color/darker_gray"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="15dp"
+                        >
+                        <EditText
+                            android:id="@+id/afternoonTime1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="14:30"
+                            android:textColor="@android:color/darker_gray"
+                            android:background="@drawable/edit_text_background"
+                            android:focusable="false"
+                            android:inputType="none"
+                            android:layout_marginRight="10dp"
+                            />
+                        <TextView
+                            android:id="@+id/a2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="à"
+                            android:textSize="20dp"
+                            android:textColor="@android:color/darker_gray"
+                            />
+                        <EditText
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/afternoonTime2"
+                            android:background="@drawable/edit_text_background"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="16:30"
+                            android:textColor="@android:color/darker_gray"
+                            android:focusable="false"
+                            android:inputType="none"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+            <CheckBox
+                android:id="@+id/afternoonCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:cardBackgroundColor="@color/blue"
+        app:layout_constraintTop_toBottomOf="@+id/scheduleSelectionLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Horaires"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Saisissez les jours lors des quelles vous êtes disponible pour accueillir vos clients.
+                Chaque jour vous pouvez sélectionner des horaires de matinée ou/et d'après midi."
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/schedule_undraw"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toBottomOf="@+id/card_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
