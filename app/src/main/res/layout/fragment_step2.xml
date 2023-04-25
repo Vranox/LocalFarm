@@ -97,12 +97,14 @@
         android:orientation="horizontal"
         android:gravity="center">
         <TextView
+            android:id="@+id/textOpenclose"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textColor="@android:color/holo_red_dark"
             android:text="Fermé"
             android:gravity="center_vertical"/>
         <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/toggleOpenClose"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
         </com.google.android.material.switchmaterial.SwitchMaterial>
@@ -138,6 +140,7 @@
                     android:orientation="vertical"
                     android:gravity="center">
                     <TextView
+                        android:id="@+id/morningTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Matin"
@@ -161,6 +164,7 @@
                             android:layout_marginRight="10dp"
                             />
                         <TextView
+                            android:id="@+id/a1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="à"
@@ -181,6 +185,7 @@
 
             </androidx.cardview.widget.CardView>
             <CheckBox
+                android:id="@+id/morningCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="0.1"
@@ -208,6 +213,7 @@
                     android:orientation="vertical"
                     android:gravity="center">
                     <TextView
+                        android:id="@+id/afternoonTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Après-midi"
@@ -233,6 +239,7 @@
                             android:layout_marginRight="10dp"
                             />
                         <TextView
+                            android:id="@+id/a2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="à"
@@ -256,6 +263,7 @@
 
             </androidx.cardview.widget.CardView>
             <CheckBox
+                android:id="@+id/afternoonCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="0.1"/>
