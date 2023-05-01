@@ -4,13 +4,15 @@ public class Products {
     public String name;
     public int mainPicture;
     public String description;
-    private int cumulRating;
-    private int nbRating;
+    ;
+    private int cumulRating = 0;
+    private int nbRating = 0;
 
 
     public Products(String name, int mainPicture, String description){
         this.name = name;
         this.mainPicture = mainPicture;
+        this.description = description;
     }
 
     //Getter / Setter

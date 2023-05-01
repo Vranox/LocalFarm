@@ -27,13 +27,11 @@ public class ProductCommand {
         return quantity;
     }
 
-
     public static List<ProductCommand> staticList(){
         ArrayList<ProductCommand> list = new ArrayList<>();
-        ProductCommand product1 = new ProductCommand(new Products("Tomate label rouge", R.drawable.tomate,"De magnifique tomates"),new Quantity(2.0, QuantityUnits.kg));
-        ProductCommand product2 = new ProductCommand(new Products("Lait Bio",R.drawable.lait,"Lait Ecrémé"),new Quantity(2.0, QuantityUnits.L));
-        ProductCommand product3 = new ProductCommand(new Products("Tomate de saison",R.drawable.tomate,"De magnifique tomates"),new Quantity(5.0, QuantityUnits.kg));
-        list.add(product1); list.add(product2); list.add(product3);
+        list.add(new ProductCommand(new Products("Tomate label rouge", R.drawable.tomate,"De magnifique tomates"),new Quantity(4.0, QuantityUnits.kg)));
+        list.add(new ProductCommand(new Products("Lait Bio",R.drawable.lait,"Lait Ecrémé"),new Quantity(2.0, QuantityUnits.L)));
+        list.add(new ProductCommand(new Products("Panier de tomates",R.drawable.tomate,"Le BIG panier de 3kg"),new Quantity(2.0, QuantityUnits.unit)));
         return list;
     }
 

@@ -5,9 +5,10 @@ public class Quantity {
     private QuantityUnits unit;
 
     public Quantity(double value,QuantityUnits unit){
-        this.value = value;
         this.unit = unit;
+        setValue(value);
     }
+    public void setValue(double val){ value = (unit != QuantityUnits.unit? val : (int)val); }
     public double getValue(){ return value; }
     public QuantityUnits getUnit(){ return unit; }
 
