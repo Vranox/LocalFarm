@@ -37,6 +37,10 @@
             android:value="YOUR_API_KEY" />
 
         <activity
+            android:name=".activity.UserListCommandActivity"
+            android:exported="false"
+            android:label="@string/title_user_list_command_activity" />
+        <activity
             android:name=".activity.MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />

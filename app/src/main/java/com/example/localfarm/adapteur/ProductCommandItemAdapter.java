@@ -1,8 +1,10 @@
 package com.example.localfarm.adapteur;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,18 +12,17 @@ import android.widget.TextView;
 import com.example.localfarm.R;
 import com.example.localfarm.data.ProductCommand;
 import com.example.localfarm.data.Products;
-import com.example.localfarm.data.Quantity;
-import com.example.localfarm.data.QuantityUnits;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductCommandItemAdapter extends BaseAdapter {
 
     private LayoutInflater mInflater;
     private List<ProductCommand> ProductList;
-
-    public ProductCommandItemAdapter(List<ProductCommand> productList) {
+    private AdapterView.OnItemClickListener clickListener;
+    public ProductCommandItemAdapter(Context context, List<ProductCommand> productList){ new ProductCommandItemAdapter(context,productList,null);}
+    public ProductCommandItemAdapter(Context context, List<ProductCommand> productList, AdapterView.OnItemClickListener clickListener) {
+        mInflater = LayoutInflater.from(context);
         this.ProductList = productList;
     }
 
@@ -59,8 +60,20 @@ public class ProductCommandItemAdapter extends BaseAdapter {
         productTitle.setText(product.name);
         productDescription.setText(product.description);
         productQuantity.setText(command.getQuantity().toString());
-        productPricePerUnit.setText(command.getQuantity().toString());
+        productPricePerUnit.setText(command.getQuantity().getUnit().toString());
+
+        /*convertView.setOnClickListener(() -> {
+            if (clickListener != null) {
+                clickListener.onItemClick(position);
+            }
+        });*/
 
         return layoutItem;
+    }
+
+
+    public void onItemClick(int position) {
+        // Gérer l'événement de clic ici
+        // ...
     }
 }
