@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">LocalFarm</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_search">Rechercher</string>
     <string name="title_notifications">Notifications</string>
     <string name= "label">Label</string>
     <string name= "delivered_state">Livré</string>
@@ -12,4 +12,5 @@
     <string name= "date">Le XX/XX/XX à XX:XX</string>
     <string name="src_text">De XXXX</string>
     <string name="dest_text">à XXXXXX</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

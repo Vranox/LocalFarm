@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name = "blue">#90A5F0</color>
+    <color name = "blue_700">#708DF3</color>
+    <color name="confirm_green">#70C574</color>
+    <color name="desactivate">#AAAAAA</color>
 </resources>
