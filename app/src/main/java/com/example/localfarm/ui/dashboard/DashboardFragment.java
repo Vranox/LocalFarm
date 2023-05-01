@@ -1,5 +1,6 @@
 package com.example.localfarm.ui.dashboard;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.localfarm.R;
 import com.example.localfarm.activity.EstablishmentCreationActivity;
+import com.example.localfarm.activity.PostReviewActivity;
 import com.example.localfarm.databinding.FragmentDashboardBinding;
 import com.example.localfarm.models.Establishment;
 import com.example.localfarm.models.Schedule;
@@ -79,6 +81,7 @@ public class DashboardFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
     }
 
     @Override
