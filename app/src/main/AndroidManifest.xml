@@ -8,6 +8,8 @@
 
 
     <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
 
     <application
         android:allowBackup="true"
@@ -38,6 +40,10 @@
             android:name=".activity.MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".activity.TweetsActivity"
+            android:exported="false"
+            android:label="TweetsActivity" />
         <activity
             android:name=".activity.MainActivity"
             android:exported="true"
