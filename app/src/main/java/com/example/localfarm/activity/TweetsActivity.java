@@ -23,17 +23,15 @@ import com.example.localfarm.recyclerview.TweetsAdapter;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
 
 public class TweetsActivity extends Activity {
 
@@ -42,20 +40,16 @@ public class TweetsActivity extends Activity {
     private List<Tweet> mTweets;
     private DatabaseReference mDatabase;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tweets);
 
         // Configuration de la référence à la base de données Firebase
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference("tweets");
 
-        // Création des faux tweets
+        // Création de la liste de tweets
         mTweets = new ArrayList<>();
-        mTweets.add(new Tweet("Alice", "Hello, Twitter!", "2023-05-03"));
-        mTweets.add(new Tweet("Bob", "This is a fake tweet.", "2023-05-02"));
-        mTweets.add(new Tweet("Charlie", "I'm tweeting from Java Android!", "2023-05-01"));
 
         // Configuration de la RecyclerView avec l'adapter
         mRecyclerView = findViewById(R.id.recycler_view_tweets);
@@ -70,32 +64,41 @@ public class TweetsActivity extends Activity {
             public void onClick(View view) {
                 // Création d'un nouveau tweet et ajout à Firebase
                 Tweet newTweet = new Tweet("David", "This is a new tweet!", "2023-05-04");
-                mDatabase.child("tweets").push().setValue(newTweet)
+                mDatabase.push().setValue(newTweet)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                // Récupération du tweet depuis Firebase
-                                mDatabase.child("tweets").addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        // Ajout du dernier tweet à la liste de tweets
-                                        Tweet tweet = dataSnapshot.getChildren().iterator().next().getValue(Tweet.class);
-                                        mTweets.add(tweet);
-                                        // Notification à l'adapter que la liste de tweets a été mise à jour
-                                        mAdapter.notifyDataSetChanged();
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                                        Log.w("Simon_Tweet", "loadPost:onCancelled", databaseError.toException());
-                                    }
-                                });
+                                // Notification à l'adapter que la liste de tweets a été mise à jour
+                                mAdapter.notifyDataSetChanged();
                             }
                         });
             }
         });
+
+        // Récupération des tweets depuis Firebase
+        mDatabase.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                // Ajout du nouveau tweet à la liste de tweets
+                Tweet tweet = dataSnapshot.getValue(Tweet.class);
+                mTweets.add(tweet);
+                // Notification à l'adapter que la liste de tweets a été mise à jour
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {}
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {}
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {}
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("Simon_Tweet", "loadPost:onCancelled", databaseError.toException());
+            }
+        });
     }
-
-
 }
-
