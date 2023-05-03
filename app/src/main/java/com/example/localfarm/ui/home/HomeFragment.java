@@ -30,6 +30,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+
 public class HomeFragment extends Fragment{
 
     private FragmentHomeBinding binding;
@@ -43,10 +48,15 @@ public class HomeFragment extends Fragment{
         final TextView textView = binding.textHome;
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
+        /**
+         * TODO : Il faut regarder avec damien pour étendre les permissions de la clé car celle-ci ne permet pas d'utiliser google authentification
+         */
         // Configure sign-in to request the user's ID, email address, and basic profile.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken("AIzaSyDXrnUL0MCnJgqsdqubiTQfP9QsY2IOaRA")
                 .requestEmail()
                 .build();
+
 
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
@@ -84,12 +94,32 @@ public class HomeFragment extends Fragment{
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
+
+                //Get data from the account
+                String name = account.getDisplayName();
+                String email = account.getEmail();
+                // Write user info to file
+                writeUserInfoToFile(name, email);
+
                 Toast.makeText(getActivity(), "Sign in success: " + account.getEmail(), Toast.LENGTH_SHORT).show();
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
-                //Log.w(TAG, "Google sign in failed", e);
-                Toast.makeText(getActivity(), "Sign in failed", Toast.LENGTH_SHORT).show();
+                Log.e("GoogleSignIn", "Sign in failed", e);
+                Toast.makeText(getActivity(), "Authentification échouée ", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    private void writeUserInfoToFile(String name, String email) {
+        String userInfo = name + "," + email;
+        try {
+            File file = new File(getActivity().getFilesDir(), "./user_info.txt");
+            FileOutputStream fos = new FileOutputStream(file, true);
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
+            osw.write(userInfo + "\n");
+            osw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
