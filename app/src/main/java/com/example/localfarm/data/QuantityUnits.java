@@ -17,21 +17,15 @@ public enum QuantityUnits {
     unit(1);
 
 
-    static List<QuantityUnits> liter = new ArrayList<>(Arrays.asList(
-            new QuantityUnits[]{
-                    QuantityUnits.L,
-                    QuantityUnits.cL,
-                    QuantityUnits.mL
-            }
-    ));
-    static List<QuantityUnits> grams = new ArrayList<>(Arrays.asList(
-            new QuantityUnits[]{
-                    QuantityUnits.kg,
-                    QuantityUnits.g,
-                    QuantityUnits.mg
-            }
-    ));
-    double value;
+    static final List<QuantityUnits> liter = new ArrayList<>(Arrays.asList(
+            QuantityUnits.L,
+            QuantityUnits.cL,
+            QuantityUnits.mL));
+    static final List<QuantityUnits> grams = new ArrayList<>(Arrays.asList(
+            QuantityUnits.kg,
+            QuantityUnits.g,
+            QuantityUnits.mg));
+    final double value;
     QuantityUnits(double i) {
         value=i;
     }
@@ -43,7 +37,7 @@ public enum QuantityUnits {
         if(
                 (grams.contains(this) && grams.contains(unit))
                 || (liter.contains(this) && liter.contains(unit))
-        )return -1;
+        )return 1;
         return (1 / this.getValue()) * unit.getValue();
     }
 }

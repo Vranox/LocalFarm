@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.localfarm.R;
-import com.example.localfarm.data.ProductCommand;
+import com.example.localfarm.data.ProductOrder;
 import com.example.localfarm.data.Products;
 
 import java.util.List;
@@ -18,10 +18,10 @@ import java.util.List;
 public class ProductCommandItemAdapter extends BaseAdapter {
 
     private LayoutInflater mInflater;
-    private List<ProductCommand> ProductList;
+    private List<ProductOrder> ProductList;
     private AdapterView.OnItemClickListener clickListener;
-    public ProductCommandItemAdapter(Context context, List<ProductCommand> productList){ new ProductCommandItemAdapter(context,productList,null);}
-    public ProductCommandItemAdapter(Context context, List<ProductCommand> productList, AdapterView.OnItemClickListener clickListener) {
+    public ProductCommandItemAdapter(Context context, List<ProductOrder> productList){ new ProductCommandItemAdapter(context,productList,null);}
+    public ProductCommandItemAdapter(Context context, List<ProductOrder> productList, AdapterView.OnItemClickListener clickListener) {
         mInflater = LayoutInflater.from(context);
         this.ProductList = productList;
     }
@@ -45,7 +45,7 @@ public class ProductCommandItemAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         //(1) : Réutilisation des layouts
         View layoutItem = convertView == null ? mInflater.inflate(R.layout.product_card, parent, false) : convertView;
-        ProductCommand command = ProductList.get(position);
+        ProductOrder command = ProductList.get(position);
         Products product = command.getProduct();
 
         //(2) : Récupération des TextView de notre layout
@@ -62,11 +62,12 @@ public class ProductCommandItemAdapter extends BaseAdapter {
         productQuantity.setText(command.getQuantity().toString());
         productPricePerUnit.setText(command.getQuantity().getUnit().toString());
 
-        /*convertView.setOnClickListener(() -> {
-            if (clickListener != null) {
-                clickListener.onItemClick(position);
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClick(position);
             }
-        });*/
+        });
 
         return layoutItem;
     }
