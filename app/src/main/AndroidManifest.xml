@@ -41,9 +41,17 @@
             android:exported="false"
             android:label="@string/title_activity_maps" />
         <activity
+            android:name=".activity.HomepageConnectionActivity"
+            android:exported="false"
+            android:label="HomepageConnectionActivity" />
+        <activity
             android:name=".activity.TweetsActivity"
             android:exported="false"
             android:label="TweetsActivity" />
+        <activity
+            android:name=".activity.CreateAccountActivity"
+            android:exported="false"
+            android:label="CreateAccountActivity" />
         <activity
             android:name=".activity.MainActivity"
             android:exported="true"
