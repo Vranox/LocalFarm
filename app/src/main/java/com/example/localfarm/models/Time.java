@@ -57,7 +57,14 @@ public class Time implements Comparable<Time>{
     }
     @Override
     public String toString(){
-        return hour + ":" + minutes;
+        if(hour<10 && minutes<10)
+            return "0"+hour + ":0" + minutes;
+        else if(hour<10)
+            return "0"+hour + ":" + minutes;
+        else if(minutes<10)
+            return hour + ":0" + minutes;
+        else
+            return hour + ":" + minutes;
     }
 
     public String getDayOfWeek() {

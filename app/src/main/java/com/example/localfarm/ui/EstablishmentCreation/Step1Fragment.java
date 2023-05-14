@@ -1,5 +1,6 @@
 package com.example.localfarm.ui.EstablishmentCreation;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.example.localfarm.R;
 import com.example.localfarm.models.Establishment;
 
 public class Step1Fragment extends Fragment {
+    private OnDataChangeListener mOnDataChangeListener;
     EditText establishmentName;
     EditText establishmentDescription;
     @Override
@@ -36,6 +38,10 @@ public class Step1Fragment extends Fragment {
         establishmentDescription = requireActivity().findViewById(R.id.editText2);
         NavController navController = Navigation.findNavController(requireActivity(), R.id.fragmentContainer);
         Navigation.setViewNavController(nextButton, navController);
+        if(mOnDataChangeListener.getEstablishment() != null) {
+            establishmentName.setText(mOnDataChangeListener.getEstablishment().getTitle());
+            establishmentDescription.setText(mOnDataChangeListener.getEstablishment().getDescription());
+        }
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,8 +52,24 @@ public class Step1Fragment extends Fragment {
                 circle1.setImageResource(R.drawable.baseline_circle_variant_24);
                 ImageView circle2 = requireActivity().findViewById(R.id.step2Circle);
                 circle2.setImageResource(R.drawable.baseline_circle_24);
-
+                Establishment establishment;
+                if(mOnDataChangeListener.getEstablishment()==null)
+                    establishment = new Establishment();
+                else
+                    establishment = mOnDataChangeListener.getEstablishment();
+                establishment.setTitle(establishmentName.getText().toString());
+                establishment.setDescription(establishmentDescription.getText().toString());
+                mOnDataChangeListener.onDataChanged(establishment);
             }
         });
+    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mOnDataChangeListener = (OnDataChangeListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement OnDataChangeListener");
+        }
     }
 }

@@ -55,7 +55,7 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 establishments = new ArrayList<>();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     Establishment establishment = snapshot.getValue(Establishment.class);
                     establishments.add(establishment);
                 }
