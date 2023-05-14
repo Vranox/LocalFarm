@@ -1,6 +1,7 @@
 package com.example.localfarm.ui.EstablishmentCreation;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.example.localfarm.R;
+import com.example.localfarm.models.Establishment;
+import com.example.localfarm.models.Position;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
@@ -46,9 +49,13 @@ public class Step3Fragment extends Fragment {
     private PlacesClient placesClient;
     private static final String TAG = "ADDRESS_AUTOCOMPLETE";
     private LatLng coordinates;
+    Establishment establishment;
+
+    private OnDataChangeListener mOnDataChangeListener;
 
     // Define an instance of ActivityResultLauncher
     ActivityResultLauncher<Intent> activityResultLauncher;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +68,11 @@ public class Step3Fragment extends Fragment {
                         Place place = Autocomplete.getPlaceFromIntent(result.getData());
                         addressInput.setText(place.getAddress());
                         coordinates = place.getLatLng();
+
+                        if (coordinates != null) {
+                            establishment.setPosition(new Position(coordinates.latitude, coordinates.longitude, place.getAddress()));
+                        }
+
                         Log.i(TAG, "Place: " + place.getAddress() + ", " + place.getId() + ", " + place.getLatLng());
                     } else if (result.getResultCode() == AutocompleteActivity.RESULT_ERROR) {
                         Status status = Autocomplete.getStatusFromIntent(result.getData());
@@ -69,6 +81,7 @@ public class Step3Fragment extends Fragment {
                 }
         );
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_step3, container, false);
@@ -78,7 +91,9 @@ public class Step3Fragment extends Fragment {
         }
         placesClient = Places.createClient(requireContext());
         addressInput = view.findViewById(R.id.address_input);
+
         addressInput.setOnClickListener(v -> startAutocompleteIntent());
+
         return view;
     }
     private void startAutocompleteIntent() {
@@ -93,6 +108,12 @@ public class Step3Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        super.onViewCreated(view, savedInstanceState);
+        establishment = mOnDataChangeListener.getEstablishment();
+
+        if (establishment.position != null) {
+            addressInput.setText(establishment.position.address);
+        }
         Button nextButton = requireActivity().findViewById(R.id.next_button);
         NavController navController = Navigation.findNavController(requireActivity(), R.id.fragmentContainer);
         Navigation.setViewNavController(nextButton, navController);
@@ -124,5 +145,14 @@ public class Step3Fragment extends Fragment {
 
             }
         });
+    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mOnDataChangeListener = (OnDataChangeListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement OnDataChangeListener");
+        }
     }
 }

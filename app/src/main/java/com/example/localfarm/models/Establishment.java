@@ -27,6 +27,9 @@ public class Establishment {
         this.horaires.get("Samedi").setDayOpen(false);
         this.horaires.get("Dimanche").setDayOpen(false);
     }
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 
     public String getTitle() {
         return title;
