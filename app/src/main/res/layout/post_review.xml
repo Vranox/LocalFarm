@@ -47,7 +47,7 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MON PROFIL"
+                android:text="Appréciation"
                 android:textSize="35sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -55,48 +55,28 @@
 
         </LinearLayout>
 
-        <!-- Photo de profil -->
-        <ImageView
-            android:id="@+id/profile_image"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+        <RatingBar
+            android:id="@+id/rating_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/default_profile_image"
-            android:scaleType="centerCrop"
-            android:layout_marginBottom="40dp"/>
+            android:numStars="5"
+            android:stepSize="1"
+            android:rating="0"/>
 
-        <!-- Nom et prénom -->
-        <EditText
-            android:id="@+id/name_edittext"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:hint="Nom et prénom"
-            android:inputType="text"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:textAlignment="center"
-            android:background="@drawable/rounded_edittext"/>
-
-        <!-- Adresse mail -->
-        <EditText
-            android:id="@+id/email_edittext"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:hint="Adresse mail"
-            android:inputType="textEmailAddress"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/rounded_edittext"
-            android:textAlignment="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mon avis : "
+            android:textSize="25dp"
+            />
 
         <!-- Numéro de téléphone -->
         <EditText
             android:id="@+id/phone_edittext"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:hint="Numéro de téléphone"
+            android:layout_height="95dp"
+            android:hint="Veuillez renseigner ici, votre commentaire vis à \nvis de l'établissement"
             android:inputType="phone"
             android:layout_marginBottom="50dp"
             android:layout_marginLeft="15dp"
@@ -104,37 +84,14 @@
             android:background="@drawable/rounded_edittext"
             android:textAlignment="center"/>
 
-        <!-- Bouton pour accéder à l'établissement -->
-        <Button
-            android:id="@+id/establishement_button"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Mon établissement"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:textColor="@color/black"
-            android:backgroundTint="#FFFFFF"
-            android:layout_marginBottom="15dp"
-            />
 
-        <Button
-            android:id="@+id/add_contact"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Ajouter en contact"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:textColor="@color/black"
-            android:backgroundTint="#FFFFFF"
-            android:layout_marginBottom="15dp"
-            />
 
         <!-- Bouton de déconnexion -->
         <Button
             android:id="@+id/logout_button"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:text="Déconnexion"
+            android:layout_height="50dp"
+            android:text="ENVOYER "
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:backgroundTint="#FF9797"

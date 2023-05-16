@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.localfarm.R;
 import com.example.localfarm.activity.EstablishmentCreationActivity;
+import com.example.localfarm.activity.TweetsActivity;
 import com.example.localfarm.databinding.FragmentDashboardBinding;
 import com.example.localfarm.models.Establishment;
 import com.example.localfarm.models.Schedule;
@@ -76,6 +77,15 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), EstablishmentCreationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button buttonTwitter = view.findViewById(R.id.button_twitter);
+        buttonTwitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), TweetsActivity.class);
                 startActivity(intent);
             }
         });
