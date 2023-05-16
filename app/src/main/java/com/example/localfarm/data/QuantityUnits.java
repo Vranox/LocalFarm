@@ -16,21 +16,14 @@ public enum QuantityUnits {
     // Unit
     unit(1);
 
-
     static List<QuantityUnits> liter = new ArrayList<>(Arrays.asList(
-            new QuantityUnits[]{
-                    QuantityUnits.L,
-                    QuantityUnits.cL,
-                    QuantityUnits.mL
-            }
-    ));
+            QuantityUnits.L,
+            QuantityUnits.cL,
+            QuantityUnits.mL));
     static List<QuantityUnits> grams = new ArrayList<>(Arrays.asList(
-            new QuantityUnits[]{
-                    QuantityUnits.kg,
-                    QuantityUnits.g,
-                    QuantityUnits.mg
-            }
-    ));
+            QuantityUnits.kg,
+            QuantityUnits.g,
+            QuantityUnits.mg));
     double value;
     QuantityUnits(double i) {
         value=i;

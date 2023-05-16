@@ -14,7 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.localfarm.R;
 import com.example.localfarm.activity.EstablishmentCreationActivity;
+import com.example.localfarm.activity.ListProductOrders;
+import com.example.localfarm.activity.ProductPageActivity;
 import com.example.localfarm.activity.TweetsActivity;
+import com.example.localfarm.activity.UserListCommandActivity;
+import com.example.localfarm.data.Products;
 import com.example.localfarm.databinding.FragmentDashboardBinding;
 import com.example.localfarm.models.Establishment;
 import com.example.localfarm.models.Schedule;
@@ -76,7 +80,8 @@ public class DashboardFragment extends Fragment {
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), EstablishmentCreationActivity.class);
+                Intent intent = new Intent(getContext(), ProductPageActivity.class);
+                intent.putExtra(ProductPageActivity.ProductorArg,new Products("Tomates du big Jardin",R.drawable.tomate,"le jardin est vrmt immense"));
                 startActivity(intent);
             }
         });

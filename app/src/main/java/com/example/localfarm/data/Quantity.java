@@ -1,6 +1,11 @@
 package com.example.localfarm.data;
 
-public class Quantity {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class Quantity implements Parcelable {
     private double value;
     private QuantityUnits unit;
 
@@ -22,5 +27,33 @@ public class Quantity {
     @Override
     public String toString(){
         return value+" "+unit;
+    }
+
+    protected Quantity(Parcel in) {
+        value = in.readDouble();
+        unit = QuantityUnits.valueOf(in.readString());
+    }
+
+    public static final Creator<Quantity> CREATOR = new Creator<Quantity>() {
+        @Override
+        public Quantity createFromParcel(Parcel in) {
+            return new Quantity(in);
+        }
+
+        @Override
+        public Quantity[] newArray(int size) {
+            return new Quantity[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeDouble(value);
+        dest.writeString(unit.name());
     }
 }
