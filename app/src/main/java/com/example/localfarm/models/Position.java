@@ -10,4 +10,8 @@ public class Position {
         this.lng = lng;
         this.address = address;
     }
+
+    public Position(){
+
+    }
 }

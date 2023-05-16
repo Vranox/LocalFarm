@@ -1,8 +1,10 @@
 package com.example.localfarm.ui.notifications;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
@@ -36,6 +38,17 @@ public class NotificationsFragment extends Fragment {
         EditText nameEditText = binding.getRoot().findViewById(R.id.name_edittext);
         EditText emailEditText = binding.getRoot().findViewById(R.id.email_edittext);
         EditText phoneEditText = binding.getRoot().findViewById(R.id.phone_edittext);
+
+        //On setup les données dans la page
+        SharedPreferences sharedPrefs = getActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+        String email = sharedPrefs.getString("email", "");
+        String password = sharedPrefs.getString("password", "");
+        String phone = sharedPrefs.getString("phone", "");
+        String name = sharedPrefs.getString("name", "");
+
+        nameEditText.setText(name);
+        emailEditText.setText(email);
+        phoneEditText.setText(phone);
 
         // Ajouter un OnClickListener
         addButton.setOnClickListener(new View.OnClickListener() {
