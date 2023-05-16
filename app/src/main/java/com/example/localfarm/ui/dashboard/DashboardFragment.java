@@ -1,6 +1,7 @@
 package com.example.localfarm.ui.dashboard;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +18,14 @@ import com.example.localfarm.activity.EstablishmentCreationActivity;
 import com.example.localfarm.activity.TweetsActivity;
 import com.example.localfarm.databinding.FragmentDashboardBinding;
 import com.example.localfarm.models.Establishment;
+import com.example.localfarm.models.EstablishmentWithDistance;
 import com.example.localfarm.models.Schedule;
 import com.example.localfarm.models.Time;
 import com.example.localfarm.recyclerview.EstablishmentAdapter;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +35,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class DashboardFragment extends Fragment {
@@ -61,8 +68,30 @@ public class DashboardFragment extends Fragment {
                     establishments.add(establishment);
                 }
                 System.out.println(establishments);
-                adapter = new EstablishmentAdapter(establishments);
-                recyclerView.setAdapter(adapter);
+                FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(getContext());
+                fusedLocationClient.getLastLocation()
+                        .addOnSuccessListener(new OnSuccessListener<Location>() {
+                            @Override
+                            public void onSuccess(Location location) {
+                                if (location != null) {
+                                    List<EstablishmentWithDistance> establishmentsWithDistance = new ArrayList<>();
+                                    for (Establishment establishment : establishments) {
+                                        Location establishmentLocation = new Location("");
+                                        establishmentLocation.setLatitude(establishment.getPosition().getLat());
+                                        establishmentLocation.setLongitude(establishment.getPosition().getLng());
+                                        float distance = location.distanceTo(establishmentLocation);
+                                        establishmentsWithDistance.add(new EstablishmentWithDistance(establishment, distance));
+                                    }
+                                    Collections.sort(establishmentsWithDistance, new Comparator<EstablishmentWithDistance>() {
+                                        public int compare(EstablishmentWithDistance e1, EstablishmentWithDistance e2) {
+                                            return Float.compare(e1.distance, e2.distance);
+                                        }
+                                    });
+                                    RecyclerView.Adapter adapter = new EstablishmentAdapter(establishmentsWithDistance);
+                                    recyclerView.setAdapter(adapter);
+                                }
+                            }
+                        });
             }
 
             @Override
