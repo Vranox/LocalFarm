@@ -1,17 +1,27 @@
 package com.example.localfarm.recyclerview;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.localfarm.R;
+import com.example.localfarm.models.DayOfWeek;
 import com.example.localfarm.models.Establishment;
 import com.example.localfarm.models.Schedule;
 import com.example.localfarm.models.Time;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.squareup.picasso.Picasso;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -38,9 +48,24 @@ public class EstablishmentAdapter extends RecyclerView.Adapter<EstablishmentAdap
         void bind(final Establishment establishment) {
             // Bind data to views
             nameTextView.setText(establishment.getTitle());
-            distanceTextView.setText("1km");
+            FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(itemView.getContext());
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            if (location != null) {
+                                Location establishmentLocation = new Location("");
+                                establishmentLocation.setLatitude(establishment.getPosition().getLat());
+                                establishmentLocation.setLongitude(establishment.getPosition().getLng());
+                                System.out.println("Location : "+establishmentLocation.toString() + " " + location.toString());
+                                float distanceInMeters = location.distanceTo(establishmentLocation);
+                                distanceTextView.setText(String.format("%.2f km", distanceInMeters / 1000));
+                            }
+                        }
+                    });
             Time timeOfNow = new Time();
-            Schedule schedule = establishment.getHoraires(timeOfNow.getDayOfWeek());
+            System.out.println("DAYOFWEEK: "+DayOfWeek.valueOf(timeOfNow.getDayOfWeek()).getFrenchName());
+            Schedule schedule = establishment.getHoraires(DayOfWeek.valueOf(timeOfNow.getDayOfWeek()).getFrenchName());
             if (schedule != null) {
                 if (schedule.isAvailable(timeOfNow)) {
                     isOpenTextView.setText("Ouvert");
@@ -53,8 +78,10 @@ public class EstablishmentAdapter extends RecyclerView.Adapter<EstablishmentAdap
                 isOpenTextView.setText("Non disponible");
                 closingTimeTextView.setText("");
             }
+            Glide.with(itemView)
+                    .load(establishment.getImageUri())
+                    .into(profileImage);
 
-            // Set click listener on the view
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -63,6 +90,7 @@ public class EstablishmentAdapter extends RecyclerView.Adapter<EstablishmentAdap
             });
         }
     }
+
 
     public EstablishmentAdapter(List<Establishment> establishments) {
         this.establishments = establishments;

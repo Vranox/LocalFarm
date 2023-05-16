@@ -67,7 +67,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Saisissez l’adresse du point de vente de votre établissement. Le mail et le téléphone sont facultatif mais peuvent rendre le contact avec vos potentiels clients plus facile."
+                android:text="Saisissez l’adresse du point de vente de votre établissement. Le mail et le téléphone sont facultatif mais peuvent rendre le contact avec vos potentiels clients plus facile."
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:layout_marginTop="8dp" />

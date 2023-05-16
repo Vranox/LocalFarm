@@ -1,14 +1,20 @@
 package com.example.localfarm.models;
 
+import android.net.Uri;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Establishment {
     public String title;
-    public String imageName;
+    public String imageUri;
     public String description;
     public Map<String,Schedule> horaires;
     public Position position;
+
+    public Position getPosition() {
+        return position;
+    }
 
     public Establishment(String title, String description, Map<String,Schedule> horaires) {
         this.title = title;
@@ -39,12 +45,12 @@ public class Establishment {
         this.title = title;
     }
 
-    public String getImageName() {
-        return imageName;
+    public String getImageUri() {
+        return imageUri;
     }
 
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
     }
 
     public String getDescription() {
@@ -66,7 +72,6 @@ public class Establishment {
     public String toString() {
         return "Establishment{" +
                 "title='" + title + '\'' +
-                ", imageName='" + imageName + '\'' +
                 ", description='" + description + '\'' +
                 ", horaires=" + horaires +
                 '}';

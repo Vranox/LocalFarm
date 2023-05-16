@@ -59,7 +59,7 @@
                 app:srcCompat="@drawable/ic_favorite" />
 
             <ImageView
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="15dp"
                 android:id="@+id/iconDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

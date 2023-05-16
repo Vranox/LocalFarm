@@ -75,7 +75,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Choisissez une image pour illustrer votre établissement auprès des utilisateurs.                  (Si vous n’en choisissez pas l’image par défaut sera appliquée)"
+                android:text="Choisissez une image pour illustrer votre établissement auprès des utilisateurs. (Si vous n’en choisissez pas l’image par défaut sera appliquée)"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:layout_marginTop="8dp" />

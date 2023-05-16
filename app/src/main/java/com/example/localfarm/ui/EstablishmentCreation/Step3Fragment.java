@@ -52,15 +52,12 @@ public class Step3Fragment extends Fragment {
     Establishment establishment;
 
     private OnDataChangeListener mOnDataChangeListener;
-
-    // Define an instance of ActivityResultLauncher
     ActivityResultLauncher<Intent> activityResultLauncher;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Initialize activityResultLauncher
         activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
