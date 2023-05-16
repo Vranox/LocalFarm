@@ -19,6 +19,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.localfarm.R;
+import com.example.localfarm.activity.HomepageConnectionActivity;
+import com.example.localfarm.activity.MainActivity;
+import com.example.localfarm.activity.MyEstablishementActivity;
+import com.example.localfarm.activity.MyEstablishementActivity;
 import com.example.localfarm.databinding.FragmentNotificationsBinding;
 
 public class NotificationsFragment extends Fragment {
@@ -84,6 +88,19 @@ public class NotificationsFragment extends Fragment {
                 dialog.show();
             }
         });
+
+
+
+        Button myEstablishement = binding.getRoot().findViewById(R.id.establishement_button);
+        myEstablishement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), MyEstablishementActivity.class); // Intent pour démarrer HomepageConnectionActivity
+                startActivity(intent); // Démarrer HomepageConnectionActivity
+            }
+        });
+
+
 
         return root;
     }
