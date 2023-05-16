@@ -40,10 +40,17 @@
             android:name=".activity.MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
+
         <activity
             android:name=".activity.HomepageConnectionActivity"
-            android:exported="false"
-            android:label="HomepageConnectionActivity" />
+            android:label="HomepageConnectionActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".activity.TweetsActivity"
             android:exported="false"
