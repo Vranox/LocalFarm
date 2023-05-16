@@ -61,6 +61,7 @@ public class ProductorCard extends Fragment {
             intent.putExtra("producteur",(Parcelable) producteur);
             startActivity(intent);*/
 
+
         });
 
         updateRating(view);

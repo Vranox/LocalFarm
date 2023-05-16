@@ -46,7 +46,7 @@ public class Command {
         return id;
     }
 
-    public void createMeeting(){
+    public Intent createMeeting(){
 
         Intent intent = new Intent(Intent.ACTION_INSERT);
         intent.setData(CalendarContract.Events.CONTENT_URI);
@@ -57,10 +57,7 @@ public class Command {
         Calendar date = Calendar.getInstance();
         date.set(2023, Calendar.MAY, date.get(Calendar.DAY_OF_MONTH), time.getHour(), time.getMinutes());
         intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, date.getTimeInMillis());
-        if()
-        date.set(2023, Calendar.MAY, 18, 15, 0);
         intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, date.getTimeInMillis());
-
-        startActivity(intent);
+        return intent;
     }
 }
