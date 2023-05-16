@@ -100,6 +100,21 @@ public class NotificationsFragment extends Fragment {
             }
         });
 
+        Button deconnexionButton = binding.getRoot().findViewById(R.id.logout_button);
+        deconnexionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.apply();
+
+                Intent intent = new Intent(getContext(), HomepageConnectionActivity.class); // Intent pour démarrer HomepageConnectionActivity
+                startActivity(intent);
+                requireActivity().finish();
+            }
+        });
+
 
 
         return root;
