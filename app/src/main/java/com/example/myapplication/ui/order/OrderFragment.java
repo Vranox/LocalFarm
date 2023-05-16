@@ -30,9 +30,15 @@ public class OrderFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        Order o1 = new Order("Order 1", "Source 1", "Destination 1", 100);
+        o1.setState(OrderState.Delivered);
+
+        Order o2 = new Order("Order 2", "Source 2", "Destination 2", 50);
+        o2.setState(OrderState.Cancelled);
+
         mOrderList = new ArrayList<>();
-        mOrderList.add(new Order("Order 1", "Source 1", "Destination 1", 100));
-        mOrderList.add(new Order("Order 2", "Source 2", "Destination 2", 50));
+        mOrderList.add(o1);
+        mOrderList.add(o2);
         mOrderList.add(new Order("Order 3", "Source 3", "Destination 3", 40));
 
         mAdapter = new OrderAdapter(mOrderList);
