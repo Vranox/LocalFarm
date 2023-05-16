@@ -8,13 +8,21 @@ public class Establishment {
     public String description;
     public Map<String,Schedule> horaires;
     public Position position;
+    public String id;
 
-    public Establishment(String title, String description, Map<String,Schedule> horaires) {
+    public Establishment(String title, String description, Map<String,Schedule> horaires, String id) {
         this.title = title;
         this.description = description;
         this.horaires = horaires;
+        this.id = id;
     }
     public Establishment(){
+    }
+
+    public String getId_owner() { return this.id;}
+
+    public void setId_owner(String id_owner) {
+        this.id = id_owner;
     }
 
     public String getTitle() {
