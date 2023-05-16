@@ -68,9 +68,21 @@ public class Step4Fragment extends Fragment {
                 result -> {
                     if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
                         Uri imageUri = result.getData().getData();
-                        imageView.setImageURI(imageUri);
-                        StorageReference imageRef = storageRef.child("images/" + imageUri.getLastPathSegment());
-                        uploadFileWithRetries(imageRef, imageUri, MAX_UPLOAD_RETRIES);
+                        if (imageUri != null) {
+                            imageView.setImageURI(imageUri);
+                            StorageReference imageRef = storageRef.child("images/" + imageUri.getLastPathSegment());
+                            uploadFileWithRetries(imageRef, imageUri, MAX_UPLOAD_RETRIES);
+                        } else {
+                            // The user didn't choose an image, so enable the next button
+                            nextButton.setEnabled(true);
+                            nextButton.setAlpha(1f);
+                            isUploading = false;
+                        }
+                    } else {
+                        // The user didn't choose an image, so enable the next button
+                        nextButton.setEnabled(true);
+                        nextButton.setAlpha(1f);
+                        isUploading = false;
                     }
                 }
         );

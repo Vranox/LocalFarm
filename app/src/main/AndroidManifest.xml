@@ -35,12 +35,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY" />
-
-        <activity
-            android:name=".activity.MapsActivity"
-            android:exported="false"
-            android:label="@string/title_activity_maps" />
+            android:value="AIzaSyBWgAYTDL5VS5kp4DTwjJ1S8wFmf2PzBmw"/>
 
         <activity
             android:name=".activity.HomepageConnectionActivity"
@@ -56,6 +51,10 @@
             android:name=".activity.TweetsActivity"
             android:exported="false"
             android:label="TweetsActivity" />
+        <activity
+            android:name=".activity.MapActivity"
+            android:exported="false"
+            android:label="MapActivity" />
         <activity
             android:name=".activity.CreateAccountActivity"
             android:exported="false"
@@ -74,6 +73,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

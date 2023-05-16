@@ -2,6 +2,8 @@ package com.example.localfarm.ui.EstablishmentCreation;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +36,27 @@ public class Step1Fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Button nextButton = requireActivity().findViewById(R.id.next_button);
         Button prevButton = requireActivity().findViewById(R.id.prev_button);
+        nextButton.setEnabled(false);
+        nextButton.setAlpha(0.5f);
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                boolean enableButton = !establishmentName.getText().toString().trim().isEmpty() &&
+                        !establishmentDescription.getText().toString().trim().isEmpty();
+                nextButton.setEnabled(enableButton);
+                nextButton.setAlpha(enableButton ? 1.0f : 0.5f);
+            }
+        };
         establishmentName = requireActivity().findViewById(R.id.editText1);
         establishmentDescription = requireActivity().findViewById(R.id.editText2);
+        establishmentName.addTextChangedListener(textWatcher);
+        establishmentDescription.addTextChangedListener(textWatcher);
         NavController navController = Navigation.findNavController(requireActivity(), R.id.fragmentContainer);
         Navigation.setViewNavController(nextButton, navController);
         if(mOnDataChangeListener.getEstablishment() != null) {

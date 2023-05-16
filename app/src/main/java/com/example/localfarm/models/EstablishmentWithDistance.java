@@ -1,5 +1,7 @@
 package com.example.localfarm.models;
 
+import androidx.annotation.NonNull;
+
 public class EstablishmentWithDistance {
     public Establishment establishment;
     public float distance;
@@ -11,5 +13,14 @@ public class EstablishmentWithDistance {
 
     public Establishment getEstablishment() {
         return establishment;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "EstablishmentWithDistance{" +
+                "establishment=" + establishment +
+                ", distance=" + distance +
+                '}';
     }
 }

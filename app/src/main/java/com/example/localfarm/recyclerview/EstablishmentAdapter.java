@@ -2,6 +2,8 @@ package com.example.localfarm.recyclerview;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,8 +26,10 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Locale;
 
 public class EstablishmentAdapter extends RecyclerView.Adapter<EstablishmentAdapter.ViewHolder> {
     private List<EstablishmentWithDistance> establishmentsWithDistance;
@@ -46,6 +50,7 @@ public class EstablishmentAdapter extends RecyclerView.Adapter<EstablishmentAdap
         TextView distanceTextView;
         TextView isOpenTextView;
         TextView closingTimeTextView;
+        TextView locationView;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -54,6 +59,7 @@ public class EstablishmentAdapter extends RecyclerView.Adapter<EstablishmentAdap
             distanceTextView = itemView.findViewById(R.id.textDistance);
             isOpenTextView = itemView.findViewById(R.id.textSchedulePart1);
             closingTimeTextView = itemView.findViewById(R.id.textSchedulePart2);
+            locationView = itemView.findViewById(R.id.locationView);
         }
 
         void bind(final EstablishmentWithDistance establishmentWithDistance) {
@@ -64,6 +70,19 @@ public class EstablishmentAdapter extends RecyclerView.Adapter<EstablishmentAdap
             Time timeOfNow = new Time();
             System.out.println("DAYOFWEEK: "+timeOfNow);
             Schedule schedule = establishment.getHoraires(DayOfWeek.valueOf(timeOfNow.getDayOfWeek()).getFrenchName());
+            Geocoder geocoder = new Geocoder(itemView.getContext(), Locale.getDefault());
+            try {
+                List<Address> addresses = geocoder.getFromLocation(establishment.position.getLat(), establishment.position.getLng(), 1);
+                if (addresses != null && !addresses.isEmpty()) {
+                    locationView.setText(addresses.get(0).getLocality());
+                } else {
+                    locationView.setText("Unknown location");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                locationView.setText("Cannot get location");
+            }
+
 
             if (schedule != null) {
                 if (schedule.isAvailable(timeOfNow)) {

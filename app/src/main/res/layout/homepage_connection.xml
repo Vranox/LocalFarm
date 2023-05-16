@@ -25,6 +25,7 @@
         android:background="@drawable/rounded_edittext"
         android:hint="Addresse email"
         android:inputType="text"
+        android:text="damso"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,6 +38,7 @@
         android:background="@drawable/rounded_edittext"
         android:hint="Mot de passe"
         android:inputType="text"
+        android:text="pwd"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
