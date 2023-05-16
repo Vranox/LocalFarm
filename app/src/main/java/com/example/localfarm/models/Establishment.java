@@ -1,5 +1,7 @@
 package com.example.localfarm.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Establishment {
@@ -8,11 +10,13 @@ public class Establishment {
     public String description;
     public Map<String,Schedule> horaires;
     public Position position;
+    public List<Review> comments;
 
     public Establishment(String title, String description, Map<String,Schedule> horaires) {
         this.title = title;
         this.description = description;
         this.horaires = horaires;
+        this.comments = new ArrayList<>();
     }
     public Establishment(){
     }
@@ -39,6 +43,10 @@ public class Establishment {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void addComment(Review c){
+        this.comments.add(c);
     }
 
     public Schedule getHoraires(String dayOfWeek) {
