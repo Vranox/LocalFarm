@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.order;
+package com.example.localfarm.order;
 
 public class Order {
     private final String label;

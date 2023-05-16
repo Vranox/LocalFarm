@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_order"
-        android:name="com.example.myapplication.ui.order.OrderFragment"
+        android:name="com.example.localfarm.order.OrderFragment"
         android:label="Orders"
         tools:layout="@layout/fragment_order" />
 </navigation>
