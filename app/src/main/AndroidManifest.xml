@@ -56,6 +56,10 @@
             android:exported="false"
             android:label="MapActivity" />
         <activity
+            android:name=".activity.MyEstablishementActivity"
+            android:exported="false"
+            android:label="MyEstablishementActivity" />
+        <activity
             android:name=".activity.CreateAccountActivity"
             android:exported="false"
             android:label="CreateAccountActivity" />
@@ -73,7 +77,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
 
 </manifest>
