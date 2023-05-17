@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions((Activity) this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
 
-        FirebaseApp.initializeApp(this);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

@@ -27,6 +27,5 @@ public class Position {
     public void setLng(double lng) {
         this.lng = lng;
     }
-
-    }
+}
 

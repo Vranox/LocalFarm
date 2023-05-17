@@ -113,5 +113,14 @@ public class Schedule {
                 ", endAfternoon=" + endAfternoon +
                 '}';
     }
+
+    public String getOpenTime(Time timeOfNow) {
+        if((timeOfNow.compareTo(startMorning)<1)||(timeOfNow.compareTo(endAfternoon)>-1)){
+            return startMorning.toString();
+        }
+        else{
+            return startAfternoon.toString();
+        }
+    }
 }
 
