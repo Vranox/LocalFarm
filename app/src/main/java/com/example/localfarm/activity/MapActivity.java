@@ -34,9 +34,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
-        // Get the establishments data
-        // This is simplified for the example; you will probably be fetching this data from a database or API
         establishmentsWithDistance = EstablishmentManager.getInstance().getEstablishments();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -62,6 +59,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             marker.setTag(i);  // Store the index of the establishment in the marker for later use
 
             mMap.moveCamera(CameraUpdateFactory.newLatLng(position));
+            mMap.setMyLocationEnabled(true);
 
             mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 @Override
@@ -74,6 +72,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             LatLng nearestPoint = new LatLng(establishmentsWithDistance.get(0).getEstablishment().getPosition().getLat(), establishmentsWithDistance.get(0).getEstablishment().getPosition().getLng());
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(nearestPoint, zoomLevel));
         }
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
