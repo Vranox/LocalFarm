@@ -9,7 +9,102 @@
         android:id="@+id/button_add_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ajoouter un produit"
+        android:layout_marginTop="456dp"
+        android:layout_marginEnd="16dp"
+        android:text="Ajouter un produit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="44dp"
+        android:text="Modification de mon établissement "
+        android:textColor="@color/quantum_grey500"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="172dp"
+        android:text="Nom :  "
+        android:textColor="@color/quantum_grey500"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edit_title_establishment"
+        android:layout_width="362dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="136dp"
+        android:background="@drawable/search_view_background"
+        android:inputType="text"
+        android:textColorHint="@color/quantum_grey400"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="216dp"
+        android:layout_marginEnd="144dp"
+        android:text="Description :  "
+        android:textColor="@color/quantum_grey500"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edit_description_establishment"
+        android:layout_width="362dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="264dp"
+        android:background="@drawable/search_view_background"
+        android:inputType="text"
+        android:textColorHint="@color/quantum_grey400"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/list_products"
+        android:layout_width="149dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="452dp"
+        android:layout_marginEnd="236dp"
+        android:text="Voir la liste de produits"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/delete_establishment"
+        android:layout_width="297dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="528dp"
+        android:layout_marginEnd="56dp"
+        android:text="Supprimer l'établissement"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="364dp"
+        android:layout_marginEnd="156dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
