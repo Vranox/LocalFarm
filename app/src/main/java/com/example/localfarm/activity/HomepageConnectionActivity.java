@@ -159,11 +159,13 @@ public class HomepageConnectionActivity extends AppCompatActivity {
                     SharedPreferences sharedPrefs = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPrefs.edit();
                     editor.putBoolean("isOwner", true);
+                    editor.apply();
                     //Log.d("Test_is_found_estab","Found");
                 }else{
                     SharedPreferences sharedPrefs = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPrefs.edit();
                     editor.putBoolean("isOwner", false);
+                    editor.apply();
                     //Log.d("test_is_found_estab","NOT FOUND");
                 }
             }
