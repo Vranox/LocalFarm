@@ -22,6 +22,9 @@
         <activity
             android:name=".activity.EstablishmentCreationActivity"
             android:exported="false" />
+        <activity
+            android:name=".activity.EstablishmentProfile"
+            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 

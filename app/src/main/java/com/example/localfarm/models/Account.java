@@ -61,4 +61,12 @@ public class Account {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 }

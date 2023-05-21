@@ -76,7 +76,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        System.out.println("onOptionsItemSelected");
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();

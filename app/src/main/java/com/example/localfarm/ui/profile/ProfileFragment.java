@@ -58,16 +58,6 @@ public class ProfileFragment extends Fragment {
                 // Code à exécuter lorsque l'option est cliquée.
             }
         });
-
-        // Écouteur d'événements pour le bouton de déconnexion
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Code à exécuter lorsque le bouton de déconnexion est cliqué.
-                logout();
-            }
-        });
-
         return root;
     }
 
@@ -79,9 +69,12 @@ public class ProfileFragment extends Fragment {
         SharedPreferences sharedPrefs = getActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
         String email = sharedPrefs.getString("email", "");
         String name = sharedPrefs.getString("name", "");
+        String surname = sharedPrefs.getString("surname", "");
         TextView tvName = view.findViewById(R.id.tvName);
+        TextView tvSurname = view.findViewById(R.id.tvSurname);
         TextView tvEmail = view.findViewById(R.id.tvEmail);
         tvName.setText(name);
+        tvSurname.setText(surname);
         tvEmail.setText(email);
         Button btnLogout = view.findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(new View.OnClickListener() {
@@ -155,10 +148,5 @@ public class ProfileFragment extends Fragment {
             }
         });
         return animator;
-    }
-
-    private void logout() {
-        // Déconnectez l'utilisateur ici.
-        // Redirigez l'utilisateur vers l'écran de connexion.
     }
 }
