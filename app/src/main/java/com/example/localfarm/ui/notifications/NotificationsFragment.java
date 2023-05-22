@@ -1,8 +1,10 @@
 package com.example.localfarm.ui.notifications;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
@@ -17,6 +19,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.localfarm.R;
+import com.example.localfarm.activity.HomepageConnectionActivity;
+import com.example.localfarm.activity.MainActivity;
+import com.example.localfarm.activity.MyEstablishementActivity;
+import com.example.localfarm.activity.MyEstablishementActivity;
 import com.example.localfarm.databinding.FragmentNotificationsBinding;
 
 public class NotificationsFragment extends Fragment {
@@ -36,6 +42,17 @@ public class NotificationsFragment extends Fragment {
         EditText nameEditText = binding.getRoot().findViewById(R.id.name_edittext);
         EditText emailEditText = binding.getRoot().findViewById(R.id.email_edittext);
         EditText phoneEditText = binding.getRoot().findViewById(R.id.phone_edittext);
+
+        //On setup les données dans la page
+        SharedPreferences sharedPrefs = getActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+        String email = sharedPrefs.getString("email", "");
+        String password = sharedPrefs.getString("password", "");
+        String phone = sharedPrefs.getString("phone", "");
+        String name = sharedPrefs.getString("name", "");
+
+        nameEditText.setText(name);
+        emailEditText.setText(email);
+        phoneEditText.setText(phone);
 
         // Ajouter un OnClickListener
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +88,19 @@ public class NotificationsFragment extends Fragment {
                 dialog.show();
             }
         });
+
+
+
+        Button myEstablishement = binding.getRoot().findViewById(R.id.establishement_button);
+        myEstablishement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), MyEstablishementActivity.class); // Intent pour démarrer HomepageConnectionActivity
+                startActivity(intent); // Démarrer HomepageConnectionActivity
+            }
+        });
+
+
 
         return root;
     }

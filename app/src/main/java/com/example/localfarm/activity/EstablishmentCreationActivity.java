@@ -12,9 +12,13 @@ import android.view.MenuItem;
 
 import com.example.localfarm.R;
 import com.example.localfarm.databinding.ActivityMainBinding;
+import com.example.localfarm.models.Establishment;
+import com.example.localfarm.ui.EstablishmentCreation.OnDataChangeListener;
+import com.example.localfarm.ui.EstablishmentCreation.Step1Fragment;
 
-public class EstablishmentCreationActivity extends AppCompatActivity {
+public class EstablishmentCreationActivity extends AppCompatActivity implements OnDataChangeListener {
     private NavController navController;
+    Establishment establishment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,5 +45,15 @@ public class EstablishmentCreationActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onDataChanged(Object newData) {
+        establishment = (Establishment) newData;
+    }
+
+    @Override
+    public Establishment getEstablishment() {
+        return establishment;
     }
 }

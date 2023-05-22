@@ -3,9 +3,15 @@
     <string name="title_home">Home</string>
     <string name="title_search">Rechercher</string>
     <string name="title_notifications">Notifications</string>
+    <string name= "label">Label</string>
+    <string name= "delivered_state">Livre</string>
+    <string name= "ongoing_state">En cours</string>
+    <string name= "cancelled_state">Annule</string>
+    <string name = "total">Total=XXXeu</string>
+    <string name= "destination">De XXXXX a XXXXX</string>
+    <string name= "date">Le XX XX XX a XX:XX</string>
+    <string name="src_text">De XXXX</string>
+    <string name="dest_text">a XXXXXX</string>
     <string name="title_activity_maps">MapsActivity</string>
-    <string name="title_user_list_command_activity">UserListCommandActivity</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="product_page_activity">product_page_activity</string>
+    <string name="orders">Orders</string>
 </resources>
