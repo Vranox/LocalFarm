@@ -14,7 +14,7 @@ import com.example.localfarm.models.Review;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class SendCommentActivity extends Activity {
+public class SendReviewActivity extends Activity {
 
     private Account user;
     private Establishment establishment;
@@ -30,9 +30,9 @@ public class SendCommentActivity extends Activity {
 
         EditText reviewText = findViewById(R.id.phone_edit_text);
         RatingBar stars = findViewById(R.id.rating_bar);
-        Button sendComment = findViewById(R.id.send_comment_button);
+        Button sendReview = findViewById(R.id.send_comment_button);
 
-        sendComment.setOnClickListener(new View.OnClickListener() {
+        sendReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String comment = reviewText.getText().toString();
