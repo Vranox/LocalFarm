@@ -15,8 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.localfarm.R;
 import com.example.localfarm.activity.EstablishmentCreationActivity;
+import com.example.localfarm.activity.FragmentProductCommandList;
+import com.example.localfarm.activity.ListProductOrders;
+import com.example.localfarm.activity.ProductPageActivity;
 import com.example.localfarm.activity.MapActivity;
 import com.example.localfarm.activity.TweetsActivity;
+import com.example.localfarm.activity.UserListCommandActivity;
+import com.example.localfarm.data.PricePerUnit;
+import com.example.localfarm.data.Products;
+import com.example.localfarm.data.QuantityUnits;
 import com.example.localfarm.databinding.FragmentDashboardBinding;
 import com.example.localfarm.models.Establishment;
 import com.example.localfarm.models.EstablishmentWithDistance;
