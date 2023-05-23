@@ -14,28 +14,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.localfarm.R;
-import com.example.localfarm.activity.EstablishmentCreationActivity;
-import com.example.localfarm.activity.FragmentProductCommandList;
-import com.example.localfarm.activity.ListProductOrders;
-import com.example.localfarm.activity.ProductPageActivity;
 import com.example.localfarm.activity.MapActivity;
-import com.example.localfarm.activity.TweetsActivity;
-import com.example.localfarm.activity.UserListCommandActivity;
-import com.example.localfarm.data.PricePerUnit;
-import com.example.localfarm.data.Products;
-import com.example.localfarm.data.QuantityUnits;
 import com.example.localfarm.databinding.FragmentDashboardBinding;
-import com.example.localfarm.models.Establishment;
-import com.example.localfarm.models.EstablishmentWithDistance;
-import com.example.localfarm.models.Schedule;
-import com.example.localfarm.models.Time;
-import com.example.localfarm.recyclerview.EstablishmentAdapter;
+import com.example.localfarm.models.actor.Establishment;
+import com.example.localfarm.models.actor.EstablishmentWithDistance;
+import com.example.localfarm.adapteur.recyclerview.EstablishmentAdapter;
 import com.example.localfarm.singleton.EstablishmentManager;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,7 +32,6 @@ import com.google.firebase.database.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class DashboardFragment extends Fragment {

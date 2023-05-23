@@ -1,4 +1,4 @@
-package com.example.localfarm.data;
+package com.example.localfarm.models.products;
 
 import android.os.Parcel;
 import android.os.Parcelable;

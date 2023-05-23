@@ -42,7 +42,7 @@
         android:id="@+id/ListProductOrders_ProductCommandList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:name="com.example.localfarm.activity.FragmentProductCommandList"
+        android:name="com.example.localfarm.ui.lists.FragmentProductCommandList"
         app:layout_constraintTop_toBottomOf="@id/header"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

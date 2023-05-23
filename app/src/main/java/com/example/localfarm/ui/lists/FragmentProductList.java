@@ -1,4 +1,4 @@
-package com.example.localfarm.activity;
+package com.example.localfarm.ui.lists;
 
 import android.os.Bundle;
 
@@ -11,7 +11,7 @@ import android.widget.ListView;
 
 import com.example.localfarm.R;
 import com.example.localfarm.adapteur.ProductItemAdapter;
-import com.example.localfarm.data.Products;
+import com.example.localfarm.models.products.Products;
 
 import java.util.List;
 
@@ -19,9 +19,9 @@ import java.util.List;
  * Pour utiliser le fragment, mettre ca dans le script appelant (dans le onCreate):
  *
  * <pre>{@code
- * FragmentProductList fragment = FragmentProductList.newInstance(null);
+ * FragmentProductList fragment = FragmentProductList.newInstance(TODO);
  * getSupportFragmentManager().beginTransaction()
- * .replace(R.id.ListProductOrders_ProductCommandList, fragment)
+ * .replace(TODO, fragment)
  * .commit();
  * }</pre>
 

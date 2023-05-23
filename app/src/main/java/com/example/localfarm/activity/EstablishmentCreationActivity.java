@@ -1,7 +1,6 @@
 package com.example.localfarm.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -11,10 +10,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.localfarm.R;
-import com.example.localfarm.databinding.ActivityMainBinding;
-import com.example.localfarm.models.Establishment;
+import com.example.localfarm.models.actor.Establishment;
 import com.example.localfarm.ui.EstablishmentCreation.OnDataChangeListener;
-import com.example.localfarm.ui.EstablishmentCreation.Step1Fragment;
 
 public class EstablishmentCreationActivity extends AppCompatActivity implements OnDataChangeListener {
     private NavController navController;

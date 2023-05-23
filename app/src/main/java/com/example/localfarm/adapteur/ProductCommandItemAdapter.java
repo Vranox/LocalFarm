@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.localfarm.R;
-import com.example.localfarm.data.ProductOrder;
-import com.example.localfarm.data.Products;
+import com.example.localfarm.models.command.ProductOrder;
+import com.example.localfarm.models.products.Products;
 
 import java.util.List;
 
@@ -64,7 +64,7 @@ public class ProductCommandItemAdapter extends BaseAdapter {
         productPicture.setImageResource(product.mainPicture);
         productTitle.setText(product.name);
         productDescription.setText(product.description);
-        productQuantity.setText(command.getQuantity().toString());
+        productQuantity.setText(String.format("%.3f",command.getQuantity()));
         totalPrice.setText(String.format("%.2f", product.priceFor(command.getQuantity()))+"€");
 
         if (clickListener != null) convertView.setOnClickListener(new View.OnClickListener() {

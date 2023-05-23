@@ -1,4 +1,6 @@
-package com.example.localfarm.models;
+package com.example.localfarm.models.common;
+
+import com.example.localfarm.models.common.Time;
 
 public class Schedule {
     private Time startMorning;

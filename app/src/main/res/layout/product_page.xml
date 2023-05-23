@@ -105,7 +105,7 @@
             android:id="@+id/ProductPage_ProductorCardFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:name="com.example.localfarm.activity.ProductorCard"
+            android:name="com.example.localfarm.ui.profile.FragmentAccountCard"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

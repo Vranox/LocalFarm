@@ -1,4 +1,4 @@
-package com.example.localfarm.activity;
+package com.example.localfarm.adapteur;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.localfarm.R;
-import com.example.localfarm.adapteur.ProductCommandItemAdapter;
-import com.example.localfarm.data.ProductOrder;
+import com.example.localfarm.models.command.ProductOrder;
 import com.example.localfarm.databinding.ActivityMainBinding;
 import com.google.firebase.database.annotations.NotNull;
 
@@ -17,8 +16,6 @@ import androidx.fragment.app.Fragment;
 import java.util.List;
 
 public class FragmentProductOrder extends Fragment {
-
-    private ActivityMainBinding binding;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_product_list_order, container, false);

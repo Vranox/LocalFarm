@@ -1,6 +1,8 @@
-package com.example.localfarm.models;
+package com.example.localfarm.models.actor;
 
 import androidx.annotation.NonNull;
+
+import com.example.localfarm.models.actor.Establishment;
 
 public class EstablishmentWithDistance {
     public Establishment establishment;

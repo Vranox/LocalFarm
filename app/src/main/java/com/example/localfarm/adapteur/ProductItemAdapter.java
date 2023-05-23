@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.localfarm.R;
-import com.example.localfarm.data.Products;
+import com.example.localfarm.models.products.Products;
 
 import java.util.List;
 
@@ -58,7 +58,7 @@ public class ProductItemAdapter extends BaseAdapter {
         productPicture.setImageResource(product.mainPicture);
         productTitle.setText(product.name);
         productDescription.setText(product.description);
-        productPricePerUnit.setText("DO SMTH");
+        productPricePerUnit.setText(product.pricePerUnit());
 
         if (clickListener != null) convertView.setOnClickListener(new View.OnClickListener() {
             @Override
