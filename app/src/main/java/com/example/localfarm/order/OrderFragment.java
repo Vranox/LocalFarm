@@ -30,16 +30,16 @@ public class OrderFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        Order o1 = new Order("Order 1", "Source 1", "Destination 1", 100);
+        Order o1 = new Order("Mentuelle", "Rue Robert 24", "Rue Riquier 23", 100);
         o1.setState(OrderState.Delivered);
 
-        Order o2 = new Order("Order 2", "Source 2", "Destination 2", 50);
+        Order o2 = new Order("Livraison frais", "Route Dolines 400", "Rue Riquier 23", 50);
         o2.setState(OrderState.Cancelled);
 
         mOrderList = new ArrayList<>();
         mOrderList.add(o1);
         mOrderList.add(o2);
-        mOrderList.add(new Order("Order 3", "Source 3", "Destination 3", 40));
+        mOrderList.add(new Order("Fruits & légumes", "20 Gare St-Pierre", "Rue Riquier 23", 40));
 
         mAdapter = new OrderAdapter(mOrderList);
         mRecyclerView.setAdapter(mAdapter);
