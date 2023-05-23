@@ -6,9 +6,7 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 import com.example.localfarm.R;
-import com.example.localfarm.models.products.PricePerUnit;
 import com.example.localfarm.models.products.Products;
-import com.example.localfarm.models.products.Quantity;
 import com.example.localfarm.models.products.QuantityUnits;
 
 import java.util.ArrayList;
