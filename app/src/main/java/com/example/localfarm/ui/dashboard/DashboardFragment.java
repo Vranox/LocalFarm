@@ -83,8 +83,7 @@ public class DashboardFragment extends Fragment {
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ListProductOrders.class);
-                intent.putExtra(ProductPageActivity.ProductorArg,new Products("Tomates du big Jardin",R.drawable.tomate,"le jardin est vrmt immense", new PricePerUnit(1, QuantityUnits.kg,1)));
+                Intent intent = new Intent(getContext(), EstablishmentCreationActivity.class);
                 startActivity(intent);
             }
         });
