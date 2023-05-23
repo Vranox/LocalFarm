@@ -65,13 +65,14 @@ public class MyEstablishementActivity extends Activity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MyEstablishementActivity.this, "Erreur lors de la récupération des comptes", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyEstablishementActivity.this, "Erreur lors de la récupération de l'établissement", Toast.LENGTH_SHORT).show();
             }
         });
 
-        // Vous pouvez réutiliser l'objet `establishment` et le modifier plus tard dans le code si nécessaire
-        if (establishment != null) {
-            // Faites quelque chose avec `establishment`
-        }
+
+        //Set-up le comportement du bouton validation des modifications
+
+
     }
+
 }
