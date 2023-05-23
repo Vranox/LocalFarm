@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,21 +38,23 @@ public class CreateAccountActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_account);
 
-        EditText emailEditText = findViewById(R.id.create_account_email);
-        EditText passwordEditText = findViewById(R.id.create_account_password);
-        EditText phoneEditText = findViewById(R.id.create_account_phone);
-        EditText nameEditText = findViewById(R.id.create_account_name);
+        EditText emailEditText = findViewById(R.id.email_input);
+        EditText passwordInput = findViewById(R.id.password_input);
+        EditText phoneEditText = findViewById(R.id.phone_input);
+        EditText nameEditText = findViewById(R.id.name_input);
+        EditText surnameEditText = findViewById(R.id.surname_input);
 
         Button createAccount = findViewById(R.id.create_account_validate);
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String email = emailEditText.getText().toString();
-                String password = passwordEditText.getText().toString();
+                String password = passwordInput.getText().toString();
                 String phone = phoneEditText.getText().toString();
                 String name = nameEditText.getText().toString();
+                String surname = surnameEditText.getText().toString();
                 String id = UUID.randomUUID().toString();
-                Account newAccount = new Account(email, password, phone, name, id);
+                Account newAccount = new Account(email, password, phone, name, surname, id);
                 mDatabase.child("account").push().setValue(newAccount);
 
                 SharedPreferences sharedPrefs = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
@@ -58,10 +63,34 @@ public class CreateAccountActivity extends AppCompatActivity{
                 editor.putString("password", password);
                 editor.putString("phone", phone);
                 editor.putString("name", name);
+                editor.putString("surname", surname);
                 editor.apply();
 
-                Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class); // Intent pour démarrer HomepageConnectionActivity
-                startActivity(intent); // Démarrer HomepageConnectionActivity
+                Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        passwordInput.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(R.drawable.ic_eye), null); // Set initial icon
+        passwordInput.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_RIGHT = 2;
+
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (passwordInput.getRight() - passwordInput.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        int selection = passwordInput.getSelectionEnd();
+                        if (passwordInput.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
+                            passwordInput.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            passwordInput.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(R.drawable.ic_eye_closed), null);
+                        } else {
+                            passwordInput.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            passwordInput.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(R.drawable.ic_eye), null);
+                        }
+                        passwordInput.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
             }
         });
     }

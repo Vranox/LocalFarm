@@ -18,8 +18,15 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
+<<<<<<< HEAD
         android:id="@+id/navigation_order"
         android:name="com.example.localfarm.order.OrderFragment"
         android:label="Orders"
         tools:layout="@layout/fragment_order" />
+=======
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.localfarm.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profil" />
+>>>>>>> 37db176634b8170867eecb49a744c0704bfae5b7
 </navigation>

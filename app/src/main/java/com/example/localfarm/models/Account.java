@@ -6,14 +6,18 @@ public class Account {
     private String password;
     private String phone;
     private String name;
+    private String surname;
     private String id;
+    private Position approxPosition;
 
-    public Account(String email, String password, String phone, String name, String id){
+    public Account(String email, String password, String phone, String name, String surname, String id){
         this.email = email;
         this.password = password;
         this.phone = phone;
         this.name = name;
+        this.surname = surname;
         this.id = id;
+        this.approxPosition = new Position(43.592350475687944, 7.077720662024486, "Antibes");
     }
 
     public Account(){}
