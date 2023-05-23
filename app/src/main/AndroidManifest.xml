@@ -37,7 +37,23 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBWgAYTDL5VS5kp4DTwjJ1S8wFmf2PzBmw"/>
+            android:value="YOUR_API_KEY" />
+        <activity
+            android:name=".activity.UserListCommandActivity"
+            android:exported="false"
+            android:label="@string/title_user_list_command_activity" />
+        <activity
+            android:name=".activity.ProductPageActivity"
+            android:exported="false"
+            android:label="@string/product_page_activity" />
+        <activity
+            android:name=".activity.MapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".activity.ListProductOrders"
+            android:exported="false"
+            android:label="@string/list_product_orders" />
 
         <activity
             android:name=".activity.HomepageConnectionActivity"
