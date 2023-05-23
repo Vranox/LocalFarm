@@ -30,9 +30,9 @@ public class ProductOrder implements Parcelable {
 
     public static List<ProductOrder> staticList(){
         ArrayList<ProductOrder> list = new ArrayList<>();
-        list.add(new ProductOrder(new Products("Tomate label rouge", R.drawable.tomate,"De magnifique tomates"),new Quantity(4.0, QuantityUnits.kg)));
-        list.add(new ProductOrder(new Products("Lait Bio",R.drawable.lait,"Lait Ecrémé"),new Quantity(2.0, QuantityUnits.L)));
-        list.add(new ProductOrder(new Products("Panier de tomates",R.drawable.tomate,"Le BIG panier de 3kg"),new Quantity(2.0, QuantityUnits.unit)));
+        list.add(new ProductOrder(new Products("Tomate label rouge", R.drawable.tomate,"De magnifique tomates",new PricePerUnit(10,QuantityUnits.kg,0.5f)),new Quantity(4.0f, QuantityUnits.kg)));
+        list.add(new ProductOrder(new Products("Lait Bio",R.drawable.lait,"Lait Ecrémé",new PricePerUnit(6,QuantityUnits.L,2.5f)),new Quantity(2.0f, QuantityUnits.L)));
+        list.add(new ProductOrder(new Products("Panier de tomates",R.drawable.tomate,"Le BIG panier de 3kg",new PricePerUnit(1,QuantityUnits.unit,0.5f)),new Quantity(2.0f, QuantityUnits.unit)));
         return list;
     }
 

@@ -1,21 +1,15 @@
 package com.example.localfarm.activity;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.localfarm.R;
 import com.example.localfarm.adapteur.ProductCommandItemAdapter;
-import com.example.localfarm.data.ProductCommand;
+import com.example.localfarm.data.ProductOrder;
 import com.example.localfarm.databinding.ActivityMainBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 public class UserListCommandActivity extends AppCompatActivity {
 
@@ -28,8 +22,8 @@ public class UserListCommandActivity extends AppCompatActivity {
 
         //ListView
         //--GetListOfProduct
-        ProductCommandItemAdapter adapter = new ProductCommandItemAdapter(getApplicationContext(),ProductCommand.staticList());
-        ListView productList = findViewById(R.id.CommandProductList);
+        ProductCommandItemAdapter adapter = new ProductCommandItemAdapter(getApplicationContext(), ProductOrder.staticList());
+        ListView productList = findViewById(R.id.ListProductOrders_ProductCommandList);
         productList.setAdapter(adapter);
 
 

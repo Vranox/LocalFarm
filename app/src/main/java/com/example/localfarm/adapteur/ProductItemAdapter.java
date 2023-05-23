@@ -10,19 +10,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.localfarm.R;
-import com.example.localfarm.data.ProductOrder;
 import com.example.localfarm.data.Products;
 
 import java.util.List;
 
-public class ProductCommandItemAdapter extends BaseAdapter {
-
+public class ProductItemAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
-    private List<ProductOrder> ProductList;
+    private List<Products> ProductList;
     private AdapterView.OnItemClickListener clickListener;
-    public ProductCommandItemAdapter(Context context, List<ProductOrder> productList){ this(context,productList,null);}
-    public ProductCommandItemAdapter(Context context, List<ProductOrder> productList, AdapterView.OnItemClickListener clickListener) {
-        System.out.println("in "+this+" constructor: "+productList.size());
+    public ProductItemAdapter(Context context, List<Products> productList){ this(context,productList,null);}
+    public ProductItemAdapter(Context context, List<Products> productList, AdapterView.OnItemClickListener clickListener) {
         mInflater = LayoutInflater.from(context);
         ProductList = productList;
         this.clickListener = clickListener;
@@ -30,7 +27,6 @@ public class ProductCommandItemAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        System.out.println("in "+this+" getCount: "+ProductList);
         return ProductList.size();
     }
 
@@ -49,23 +45,20 @@ public class ProductCommandItemAdapter extends BaseAdapter {
         //(1) : Réutilisation des layouts
         View layoutItem = convertView == null ? mInflater.inflate(R.layout.product_command_card, parent, false) : convertView;
         System.out.println("in adapter: "+ProductList.size());
-        ProductOrder command = ProductList.get(position);
-        Products product = command.getProduct();
+        Products product = ProductList.get(position);
 
 
         //(2) : Récupération des TextView de notre layout
         ImageView productPicture        = layoutItem.findViewById(R.id.cardProductImage);
         TextView productTitle           = layoutItem.findViewById(R.id.cardProductTitle);
         TextView productDescription     = layoutItem.findViewById(R.id.CardProductDescriptionText);
-        TextView productQuantity        = layoutItem.findViewById(R.id.cardProductQuantityText);
-        TextView totalPrice             = layoutItem.findViewById(R.id.cardProductPricePerUnit);
+        TextView productPricePerUnit    = layoutItem.findViewById(R.id.cardProductPricePerUnit);
 
         //(3) : Renseignement des valeurs
         productPicture.setImageResource(product.mainPicture);
         productTitle.setText(product.name);
         productDescription.setText(product.description);
-        productQuantity.setText(command.getQuantity().toString());
-        totalPrice.setText(String.format("%.2f", product.priceFor(command.getQuantity()))+"€");
+        productPricePerUnit.setText("DO SMTH");
 
         if (clickListener != null) convertView.setOnClickListener(new View.OnClickListener() {
             @Override

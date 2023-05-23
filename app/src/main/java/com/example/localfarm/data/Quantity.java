@@ -6,18 +6,18 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 public class Quantity implements Parcelable {
-    private double value;
-    private QuantityUnits unit;
+    protected float value;
+    protected QuantityUnits unit;
 
-    public Quantity(double value,QuantityUnits unit){
+    public Quantity(float value,QuantityUnits unit){
         this.unit = unit;
         setValue(value);
     }
-    public void setValue(double val){ value = (unit != QuantityUnits.unit? val : (int)val); }
-    public double getValue(){ return value; }
+    public void setValue(float val){ value = (unit == QuantityUnits.unit? (int)val : val); }
+    public float getValue(){ return value; }
     public QuantityUnits getUnit(){ return unit; }
 
-    public double convertValue(QuantityUnits unit){
+    public float convertValue(QuantityUnits unit){
         if(this.unit.ConvertIn(unit) == -1) return value;
         value = value / this.unit.getValue() * unit.getValue();
         this.unit = unit;
@@ -30,7 +30,7 @@ public class Quantity implements Parcelable {
     }
 
     protected Quantity(Parcel in) {
-        value = in.readDouble();
+        value = in.readFloat();
         unit = QuantityUnits.valueOf(in.readString());
     }
 
@@ -53,7 +53,7 @@ public class Quantity implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeDouble(value);
+        dest.writeFloat(value);
         dest.writeString(unit.name());
     }
 }
