@@ -97,7 +97,6 @@ public class Step3Fragment extends Fragment {
     }
     private void startAutocompleteIntent() {
         List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS);
-        System.out.println("AUTO COMPLETE INTENT");
         Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields)
                 .build(requireContext());
         activityResultLauncher.launch(intent);
