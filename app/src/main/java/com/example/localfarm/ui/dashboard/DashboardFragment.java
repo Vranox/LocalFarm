@@ -107,6 +107,15 @@ public class DashboardFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        Button buttonTwitter2 = view.findViewById(R.id.button_twitter2);
+        buttonTwitter2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), TweetsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
