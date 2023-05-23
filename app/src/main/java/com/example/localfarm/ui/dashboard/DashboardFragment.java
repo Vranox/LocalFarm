@@ -1,6 +1,7 @@
 package com.example.localfarm.ui.dashboard;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.example.localfarm.activity.EstablishmentCreationActivity;
 import com.example.localfarm.activity.FragmentProductCommandList;
 import com.example.localfarm.activity.ListProductOrders;
 import com.example.localfarm.activity.ProductPageActivity;
+import com.example.localfarm.activity.MapActivity;
 import com.example.localfarm.activity.TweetsActivity;
 import com.example.localfarm.activity.UserListCommandActivity;
 import com.example.localfarm.data.PricePerUnit;
@@ -24,10 +26,15 @@ import com.example.localfarm.data.Products;
 import com.example.localfarm.data.QuantityUnits;
 import com.example.localfarm.databinding.FragmentDashboardBinding;
 import com.example.localfarm.models.Establishment;
+import com.example.localfarm.models.EstablishmentWithDistance;
 import com.example.localfarm.models.Schedule;
 import com.example.localfarm.models.Time;
 import com.example.localfarm.recyclerview.EstablishmentAdapter;
+import com.example.localfarm.singleton.EstablishmentManager;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,6 +44,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class DashboardFragment extends Fragment {
@@ -67,9 +76,28 @@ public class DashboardFragment extends Fragment {
                     Establishment establishment = snapshot.getValue(Establishment.class);
                     establishments.add(establishment);
                 }
-                System.out.println(establishments);
-                adapter = new EstablishmentAdapter(establishments);
-                recyclerView.setAdapter(adapter);
+
+                FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(getContext());
+                fusedLocationClient.getLastLocation()
+                        .addOnSuccessListener(new OnSuccessListener<Location>() {
+                            @Override
+                            public void onSuccess(Location location) {
+                                if (location != null) {
+                                    List<EstablishmentWithDistance> establishmentsWithDistance = new ArrayList<>();
+                                    for (Establishment establishment : establishments) {
+                                        Location establishmentLocation = new Location("");
+                                        establishmentLocation.setLatitude(establishment.getPosition().getLat());
+                                        establishmentLocation.setLongitude(establishment.getPosition().getLng());
+                                        float distance = location.distanceTo(establishmentLocation);
+                                        establishmentsWithDistance.add(new EstablishmentWithDistance(establishment, distance));
+                                    }
+                                    Collections.sort(establishmentsWithDistance, (e1, e2) -> Float.compare(e1.distance, e2.distance));
+                                    EstablishmentManager.getInstance().setEstablishments(establishmentsWithDistance);
+                                    RecyclerView.Adapter adapter = new EstablishmentAdapter(establishmentsWithDistance);
+                                    recyclerView.setAdapter(adapter);
+                                }
+                            }
+                        });
             }
 
             @Override
@@ -78,21 +106,11 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-
-        Button buttonAdd = view.findViewById(R.id.buttonadd);
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), EstablishmentCreationActivity.class);
-                startActivity(intent);
-            }
-        });
-
         Button buttonTwitter = view.findViewById(R.id.button_twitter);
         buttonTwitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), TweetsActivity.class);
+                Intent intent = new Intent(getContext(), MapActivity.class);
                 startActivity(intent);
             }
         });
@@ -104,26 +122,6 @@ public class DashboardFragment extends Fragment {
         binding = null;
     }
 
-//    private void addEstablishment() {
-//        System.out.println("establishmentRef: " + establishmentRef);
-//        String key = establishmentRef.push().getKey();
-//        System.out.println("Generated key: " + key);
-//
-//        Establishment newEstablishment = new Establishment("La ferme d'antan", "Ferme familial", new Schedule(new Time(8, 30), new Time(12, 30), new Time(13, 30), new Time(18, 30)));
-//        System.out.println("New establishment: " + newEstablishment);
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        establishmentRef.child(key).setValue(newEstablishment)
-//                .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Void> task) {
-//                        if (task.isSuccessful()) {
-//                            System.out.println("Establishment added successfully");
-//                        } else {
-//                            System.out.println("Failed to add establishment: " + task.getException());
-//                        }
-//                    }
-//                });
-//    }
     private void getEstablishment() {
         establishmentRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -112,6 +114,25 @@ public class Step3Fragment extends Fragment {
             addressInput.setText(establishment.position.address);
         }
         Button nextButton = requireActivity().findViewById(R.id.next_button);
+        nextButton.setEnabled(false);
+        nextButton.setAlpha(0.5f);
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Enable button if address field has text
+                boolean enableButton = !addressInput.getText().toString().trim().isEmpty();
+                nextButton.setEnabled(enableButton);
+                nextButton.setAlpha(enableButton ? 1.0f : 0.5f);
+            }
+        };
+
+        addressInput.addTextChangedListener(textWatcher);
         NavController navController = Navigation.findNavController(requireActivity(), R.id.fragmentContainer);
         Navigation.setViewNavController(nextButton, navController);
         nextButton.setOnClickListener(new View.OnClickListener() {

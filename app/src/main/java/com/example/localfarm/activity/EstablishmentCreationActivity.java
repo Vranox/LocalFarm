@@ -39,7 +39,6 @@ public class EstablishmentCreationActivity extends AppCompatActivity implements 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // Handle the "up" button by calling finish() to close the activity
                 finish();
                 return true;
             default:
