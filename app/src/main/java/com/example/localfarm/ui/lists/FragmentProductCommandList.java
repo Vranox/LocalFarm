@@ -1,4 +1,4 @@
-package com.example.localfarm.activity;
+package com.example.localfarm.ui.lists;
 
 import android.os.Bundle;
 
@@ -12,7 +12,7 @@ import android.widget.ListView;
 
 import com.example.localfarm.R;
 import com.example.localfarm.adapteur.ProductCommandItemAdapter;
-import com.example.localfarm.data.ProductOrder;
+import com.example.localfarm.models.command.ProductOrder;
 
 import java.util.List;
 

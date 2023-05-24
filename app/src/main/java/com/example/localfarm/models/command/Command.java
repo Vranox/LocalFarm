@@ -1,9 +1,10 @@
-package com.example.localfarm.data;
+package com.example.localfarm.models.command;
 
 import android.content.Intent;
 import android.provider.CalendarContract;
 
-import com.example.localfarm.models.Time;
+import com.example.localfarm.models.actor.Account;
+import com.example.localfarm.models.common.Time;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -12,13 +13,13 @@ import java.util.TimeZone;
 public class Command {
     private static int idCounter=1;
     private int id;
-    private Client buyer;
-    private Productor seller;
+    private Account buyer;
+    private Account seller;
 
     private Time time;
     private Date date;
 
-    public Command(Client buyer, Productor seller, Date date, Time meetingTime){
+    public Command(Account buyer, Account seller, Date date, Time meetingTime){
         id=idCounter++;
         this.buyer = buyer;
         this.seller = seller;
@@ -30,11 +31,11 @@ public class Command {
         return time;
     }
 
-    public Productor getSeller() {
+    public Account getSeller() {
         return seller;
     }
 
-    public Client getBuyer() {
+    public Account getBuyer() {
         return buyer;
     }
 

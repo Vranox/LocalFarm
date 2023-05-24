@@ -1,9 +1,7 @@
-package com.example.localfarm.activity;
+package com.example.localfarm.ui.profile;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.provider.CalendarContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +11,16 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.localfarm.R;
-import com.example.localfarm.data.Productor;
-import java.util.Calendar;
-import java.util.TimeZone;
+import com.example.localfarm.models.actor.Account;
 
-public class ProductorCard extends Fragment {
-    public Productor producteur;
+public class FragmentAccountCard extends Fragment {
+    public Account producteur;
     private static final String ARG_PARAM1 = "productor";
 
 
-    public static ProductorCard newInstance(Parcelable param1) {
+    public static FragmentAccountCard newInstance(Parcelable param1) {
         System.out.println("newInstance");
-        ProductorCard fragment = new ProductorCard();
+        FragmentAccountCard fragment = new FragmentAccountCard();
         System.out.println("args1");
         Bundle args = new Bundle();
         args.putParcelable(ARG_PARAM1, param1);
@@ -55,7 +51,7 @@ public class ProductorCard extends Fragment {
         ImageView profilePicture = view.findViewById(R.id.ProductorCard_ProfilePicture);
         Button button = view.findViewById(R.id.ProductorCard_button);
 
-        profilePicture.setImageResource(producteur.getProfilePicture());
+        profilePicture.setImageResource(R.drawable.default_profile_image);
         button.setOnClickListener(v -> {
             /*Intent intent = new Intent(this, MyActivity.class);
             intent.putExtra("producteur",(Parcelable) producteur);

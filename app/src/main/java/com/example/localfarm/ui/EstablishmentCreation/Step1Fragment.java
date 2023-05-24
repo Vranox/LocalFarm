@@ -19,7 +19,7 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.example.localfarm.R;
-import com.example.localfarm.models.Establishment;
+import com.example.localfarm.models.actor.Establishment;
 
 public class Step1Fragment extends Fragment {
     private OnDataChangeListener mOnDataChangeListener;

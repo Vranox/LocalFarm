@@ -1,4 +1,4 @@
-package com.example.localfarm.models;
+package com.example.localfarm.models.common;
 
 public enum DayOfWeek {
     MONDAY("Lundi"),

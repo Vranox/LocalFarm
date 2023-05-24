@@ -23,7 +23,7 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.example.localfarm.R;
-import com.example.localfarm.models.Establishment;
+import com.example.localfarm.models.actor.Establishment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;

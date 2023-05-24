@@ -1,6 +1,4 @@
-package com.example.localfarm.data;
-
-import androidx.annotation.NonNull;
+package com.example.localfarm.models.products;
 
 import java.util.ArrayList;
 import java.util.Arrays;

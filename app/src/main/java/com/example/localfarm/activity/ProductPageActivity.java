@@ -6,15 +6,16 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.ImageButton;
         import android.widget.ImageView;
         import android.widget.TextView;
 
 import com.example.localfarm.R;
-import com.example.localfarm.data.Client;
-import com.example.localfarm.data.Productor;
-import com.example.localfarm.data.Products;
+import com.example.localfarm.models.actor.Account;
+import com.example.localfarm.ui.profile.FragmentAccountCard;
+import com.example.localfarm.models.products.Products;
 
 public class ProductPageActivity extends AppCompatActivity {
     public static final String ProductorArg = "ProductorArg";
@@ -52,9 +53,8 @@ public class ProductPageActivity extends AppCompatActivity {
             returnButton();
         });
 
-        Client client = new Client("Rallo", "Frederic");
-        Productor productor = new Productor(client,"pauvritech");
-        ProductorCard fragment = ProductorCard.newInstance(productor);
+        Account account = new Account("email@laposte.fr","secretthings","0123456789","Rallo","Frederic","UltimateDarkFarmer");
+        FragmentAccountCard fragment = FragmentAccountCard.newInstance((Parcelable)account);
 
         // Commencer la transaction de fragment
         FragmentManager fragmentManager = getSupportFragmentManager();

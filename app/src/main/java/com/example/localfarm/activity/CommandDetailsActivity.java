@@ -8,8 +8,9 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.localfarm.R;
+import com.example.localfarm.ui.lists.FragmentProductCommandList;
 
-public class ListProductOrders extends AppCompatActivity {
+public class CommandDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class ListProductOrders extends AppCompatActivity {
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent link = new Intent(getApplicationContext(),MapsActivity.class);
+                Intent link = new Intent(getApplicationContext(),MapActivity.class);
                 startActivity(link);
             }
         });

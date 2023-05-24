@@ -47,11 +47,11 @@
             android:exported="false"
             android:label="@string/product_page_activity" />
         <activity
-            android:name=".activity.MapsActivity"
+            android:name=".activity.MapActivity"
             android:exported="false"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/title_activity_map" />
         <activity
-            android:name=".activity.ListProductOrders"
+            android:name=".activity.CommandDetailsActivity"
             android:exported="false"
             android:label="@string/list_product_orders" />
 
@@ -69,10 +69,6 @@
             android:name=".activity.TweetsActivity"
             android:exported="false"
             android:label="TweetsActivity" />
-        <activity
-            android:name=".activity.MapActivity"
-            android:exported="false"
-            android:label="MapActivity" />
         <activity
             android:name=".activity.MyEstablishementActivity"
             android:exported="false"
