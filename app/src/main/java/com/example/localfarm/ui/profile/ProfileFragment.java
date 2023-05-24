@@ -24,7 +24,7 @@ import androidx.fragment.app.Fragment;
 import com.example.localfarm.R;
 import com.example.localfarm.activity.EstablishmentCreationActivity;
 import com.example.localfarm.activity.HomepageConnectionActivity;
-import com.example.localfarm.adapteur.recyclerview.ProfileAdapter;
+import com.example.localfarm.adapteur.ProfileAdapter;
 
 public class ProfileFragment extends Fragment {
     private ListView lvOptions;

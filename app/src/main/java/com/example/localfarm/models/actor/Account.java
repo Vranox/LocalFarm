@@ -16,6 +16,23 @@ public class Account implements Parcelable {
     private String id;
     private Position approxPosition;
     private int cumulRating = 0;
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public Position getApproxPosition() {
+        return approxPosition;
+    }
+
+    public void setApproxPosition(Position approxPosition) {
+        this.approxPosition = approxPosition;
+    }
+
     private int nbRatings = 0;
 
     public Account(String email, String password, String phone, String name, String surname, String id){

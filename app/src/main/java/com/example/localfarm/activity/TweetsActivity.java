@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.localfarm.R;
 import com.example.localfarm.models.Tweet;
-import com.example.localfarm.adapteur.recyclerview.TweetsAdapter;
+import com.example.localfarm.adapteur.TweetsAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

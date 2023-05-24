@@ -15,14 +15,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.localfarm.R;
-import com.example.localfarm.models.Account;
-import com.example.localfarm.models.DayOfWeek;
-import com.example.localfarm.models.Establishment;
-import com.example.localfarm.models.EstablishmentWithDistance;
-import com.example.localfarm.models.Schedule;
-import com.example.localfarm.models.Time;
+import com.example.localfarm.models.actor.Account;
+import com.example.localfarm.models.actor.Establishment;
+import com.example.localfarm.models.actor.EstablishmentWithDistance;
+import com.example.localfarm.models.common.DayOfWeek;
+import com.example.localfarm.models.common.Schedule;
+import com.example.localfarm.models.common.Time;
 import com.example.localfarm.singleton.EstablishmentManager;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -51,7 +50,7 @@ public class EstablishmentProfile extends AppCompatActivity {
     Button buttonMap;
     EstablishmentWithDistance selectedEstablishment;
     Establishment establishment;
-    Account ownerAccount;
+    com.example.localfarm.models.actor.Account ownerAccount;
     Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +72,7 @@ public class EstablishmentProfile extends AppCompatActivity {
 
                 }
                 else {
-                    ownerAccount = new Account();
+                    ownerAccount = new com.example.localfarm.models.actor.Account();
                 }
                 initializeViews();
 
