@@ -4,6 +4,7 @@ import com.example.localfarm.models.common.Position;
 import com.example.localfarm.models.common.Schedule;
 import com.example.localfarm.models.products.Products;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,7 @@ public class Establishment {
         this.description = description;
         this.horaires = horaires;
         this.id = id;
+        this.products = new ArrayList<>();
     }
     public Establishment(){
         this.horaires = new HashMap<String,Schedule>();

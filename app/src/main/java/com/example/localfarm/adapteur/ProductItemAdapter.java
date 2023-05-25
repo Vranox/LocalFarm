@@ -55,7 +55,7 @@ public class ProductItemAdapter extends BaseAdapter {
         TextView productPricePerUnit    = layoutItem.findViewById(R.id.cardProductPricePerUnit);
 
         //(3) : Renseignement des valeurs
-        productPicture.setImageResource(product.mainPicture);
+
         productTitle.setText(product.name);
         productDescription.setText(product.description);
         productPricePerUnit.setText(product.pricePerUnit());
