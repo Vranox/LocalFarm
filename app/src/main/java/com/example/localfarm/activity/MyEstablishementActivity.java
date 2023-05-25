@@ -4,20 +4,20 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import android.util.Log;
 import android.widget.EditText;
+
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.example.localfarm.R;
-import com.example.localfarm.models.Account;
-import com.example.localfarm.models.Establishment;
+import com.example.localfarm.models.actor.Establishment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class MyEstablishementActivity extends Activity {

@@ -1,33 +1,24 @@
-package com.example.localfarm.recyclerview;
+package com.example.localfarm.adapteur.recyclerview;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.localfarm.R;
-import com.example.localfarm.models.DayOfWeek;
-import com.example.localfarm.models.Establishment;
-import com.example.localfarm.models.EstablishmentWithDistance;
-import com.example.localfarm.models.Schedule;
-import com.example.localfarm.models.Time;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.squareup.picasso.Picasso;
+import com.example.localfarm.models.common.DayOfWeek;
+import com.example.localfarm.models.actor.Establishment;
+import com.example.localfarm.models.actor.EstablishmentWithDistance;
+import com.example.localfarm.models.common.Schedule;
+import com.example.localfarm.models.common.Time;
 
 import java.io.IOException;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Locale;
 

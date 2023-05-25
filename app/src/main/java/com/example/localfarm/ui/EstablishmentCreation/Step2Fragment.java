@@ -22,9 +22,9 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.example.localfarm.R;
-import com.example.localfarm.models.Establishment;
-import com.example.localfarm.models.Schedule;
-import com.example.localfarm.models.Time;
+import com.example.localfarm.models.actor.Establishment;
+import com.example.localfarm.models.common.Schedule;
+import com.example.localfarm.models.common.Time;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.util.ArrayList;

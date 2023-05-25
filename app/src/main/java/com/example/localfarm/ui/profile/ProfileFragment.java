@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -27,7 +26,7 @@ import com.example.localfarm.R;
 import com.example.localfarm.activity.EstablishmentCreationActivity;
 import com.example.localfarm.activity.HomepageConnectionActivity;
 import com.example.localfarm.activity.MyEstablishementActivity;
-import com.example.localfarm.recyclerview.ProfileAdapter;
+import com.example.localfarm.adapteur.recyclerview.ProfileAdapter;
 
 public class ProfileFragment extends Fragment {
     private ListView lvOptions;

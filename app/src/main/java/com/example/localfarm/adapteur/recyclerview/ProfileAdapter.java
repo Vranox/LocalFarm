@@ -1,4 +1,4 @@
-package com.example.localfarm.recyclerview;
+package com.example.localfarm.adapteur.recyclerview;
 
 import android.content.Context;
 import android.view.LayoutInflater;
