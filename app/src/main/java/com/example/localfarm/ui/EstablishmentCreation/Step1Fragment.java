@@ -1,6 +1,7 @@
 package com.example.localfarm.ui.EstablishmentCreation;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -74,8 +75,11 @@ public class Step1Fragment extends Fragment {
                 ImageView circle2 = requireActivity().findViewById(R.id.step2Circle);
                 circle2.setImageResource(R.drawable.baseline_circle_24);
                 Establishment establishment;
-                if(mOnDataChangeListener.getEstablishment()==null)
+                if(mOnDataChangeListener.getEstablishment()==null){
                     establishment = new Establishment();
+                    establishment.setId_owner(getActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE).getString("id", ""));
+                }
+
                 else
                     establishment = mOnDataChangeListener.getEstablishment();
                 establishment.setTitle(establishmentName.getText().toString());

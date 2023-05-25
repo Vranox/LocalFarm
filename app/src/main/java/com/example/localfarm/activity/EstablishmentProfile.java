@@ -36,7 +36,6 @@ import java.util.Map;
 public class EstablishmentProfile extends AppCompatActivity {
     ImageView profileImage;
     ImageView establishmentImage;
-    TextView titleEstablishment;
     TextView addressEstablishment;
     TextView descriptionEstablishment;
     TextView scheduleEstablishment;
@@ -90,7 +89,6 @@ public class EstablishmentProfile extends AppCompatActivity {
 
     private void initializeViews() {
         establishmentImage = findViewById(R.id.establismentImage);
-        titleEstablishment = findViewById(R.id.establishmentName);
         addressEstablishment = findViewById(R.id.textAddress);
         profileImage = findViewById(R.id.ivProfile);
         descriptionEstablishment = findViewById(R.id.description);
