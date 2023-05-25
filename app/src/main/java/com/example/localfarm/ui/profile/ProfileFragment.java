@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import androidx.fragment.app.Fragment;
 import com.example.localfarm.R;
 import com.example.localfarm.activity.EstablishmentCreationActivity;
 import com.example.localfarm.activity.HomepageConnectionActivity;
+import com.example.localfarm.activity.MyEstablishementActivity;
 import com.example.localfarm.adapteur.recyclerview.ProfileAdapter;
 
 public class ProfileFragment extends Fragment {
@@ -66,6 +68,19 @@ public class ProfileFragment extends Fragment {
                 logout();
             }
         });
+
+
+        //Modification du texte dans le bouton sur l'établissement en fonction de si le profil possède un établissement
+        SharedPreferences sharedPrefs = getActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+        Boolean isOwner = sharedPrefs.getBoolean("isOwner",false);
+
+        if(isOwner){
+            Log.d("AAAAAAAA", "OUI OUI OUI");
+            btnAddEstablishment2.setText("Modifier mon établissement");
+        }else{
+            Log.d("AAAAAAAA", "NON NON NON");
+        }
+
 
         return root;
     }
@@ -138,8 +153,14 @@ public class ProfileFragment extends Fragment {
     }
 
     private void addEstablishment() {
-        Intent intent = new Intent(getContext(), EstablishmentCreationActivity.class);
-        startActivity(intent);
+        //On regarde ici quelle est la valeur écrite dans le bouton pour changer le comportement du on-click
+        if(btnAddEstablishment2.getText().equals("Modifier mon établissement")){
+            Intent intent = new Intent(getContext(), MyEstablishementActivity.class);
+            startActivity(intent);
+        }else{
+            Intent intent = new Intent(getContext(), EstablishmentCreationActivity.class);
+            startActivity(intent);
+        }
     }
 
     private ValueAnimator slideAnimator(int start, int end, final CardView cardView) {

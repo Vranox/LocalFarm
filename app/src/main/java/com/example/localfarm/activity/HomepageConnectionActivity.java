@@ -14,10 +14,14 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.localfarm.R;
-import com.example.localfarm.models.actor.Account;
+
+import com.example.localfarm.models.Account;
+import com.example.localfarm.models.Establishment;
+
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -114,7 +118,7 @@ public class HomepageConnectionActivity extends AppCompatActivity {
                                     editor.putBoolean("rememberMe", false);
                                 }
                                 editor.apply();
-
+                                findPotentialEstablishement(account.getId());
                                 break;
                             }
                         }
@@ -133,6 +137,43 @@ public class HomepageConnectionActivity extends AppCompatActivity {
                     }
                 });
             }
+        });
+    }
+
+    private void findPotentialEstablishement(String id) {
+        DatabaseReference estabRef = FirebaseDatabase.getInstance().getReference("establishment");
+        estabRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean found = false;
+                Establishment establishment;
+                for (DataSnapshot accountSnapshot : snapshot.getChildren()) {
+                    Establishment est = accountSnapshot.getValue(Establishment.class);
+                    if(est.getId_owner().equals(id)){
+                        found = true;
+                        break;
+                    }
+                }
+
+                if(found){
+                    SharedPreferences sharedPrefs = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPrefs.edit();
+                    editor.putBoolean("isOwner", true);
+                    editor.apply();
+                    //Log.d("Test_is_found_estab","Found");
+                }else{
+                    SharedPreferences sharedPrefs = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPrefs.edit();
+                    editor.putBoolean("isOwner", false);
+                    editor.apply();
+                    //Log.d("test_is_found_estab","NOT FOUND");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+
         });
     }
 

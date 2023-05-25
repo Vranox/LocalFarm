@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
+import android.util.Log;
+import android.widget.EditText;
+
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +26,8 @@ public class MyEstablishementActivity extends Activity {
     private Establishment establishment;
     private SharedPreferences mPrefs;
     private String mEstablishmentId;
+    private EditText editTitle;
+    private EditText editDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,24 +40,39 @@ public class MyEstablishementActivity extends Activity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference("establishment");
 
+        editTitle = findViewById(R.id.edit_title_establishment);
+        editDescription = findViewById(R.id.edit_description_establishment);
+
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 boolean found = false;
                 for (DataSnapshot accountSnapshot : snapshot.getChildren()) {
                     Establishment est = accountSnapshot.getValue(Establishment.class);
-                    if(est.getId_owner().equals(mEstablishmentId)){
+                    if (est.getId_owner().equals(mEstablishmentId)) {
                         establishment = est;
+                        editTitle.setText(establishment.getTitle());
+                        editDescription.setText(establishment.getDescription());
+                        found = true;
+                        break;
                     }
+                }
+
+                if (!found) {
+                    Toast.makeText(MyEstablishementActivity.this, "Aucun établissement trouvé", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(MyEstablishementActivity.this, "Erreur lors de la récupération des comptes", Toast.LENGTH_SHORT).show();
-                }
-
+                Toast.makeText(MyEstablishementActivity.this, "Erreur lors de la récupération de l'établissement", Toast.LENGTH_SHORT).show();
+            }
         });
 
+
+        //Set-up le comportement du bouton validation des modifications
+
+
     }
+
 }
