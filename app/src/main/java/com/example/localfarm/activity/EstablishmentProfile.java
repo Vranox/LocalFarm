@@ -13,15 +13,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.localfarm.R;
+import com.example.localfarm.adapteur.ProductEstablishmentProfilAdapter;
 import com.example.localfarm.models.actor.Account;
 import com.example.localfarm.models.actor.Establishment;
 import com.example.localfarm.models.actor.EstablishmentWithDistance;
 import com.example.localfarm.models.common.DayOfWeek;
 import com.example.localfarm.models.common.Schedule;
 import com.example.localfarm.models.common.Time;
+import com.example.localfarm.models.products.Products;
 import com.example.localfarm.singleton.EstablishmentManager;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -75,6 +79,12 @@ public class EstablishmentProfile extends AppCompatActivity {
                     ownerAccount = new com.example.localfarm.models.actor.Account();
                 }
                 initializeViews();
+                RecyclerView productsRecyclerView = findViewById(R.id.products_recycler_view);
+                productsRecyclerView.setLayoutManager(new LinearLayoutManager(EstablishmentProfile.this));
+
+                List<Products> productsList = Products.staticList();
+                ProductEstablishmentProfilAdapter adapter = new ProductEstablishmentProfilAdapter(EstablishmentProfile.this, productsList);
+                productsRecyclerView.setAdapter(adapter);
 
             }
 

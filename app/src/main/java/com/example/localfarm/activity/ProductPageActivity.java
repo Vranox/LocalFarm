@@ -48,7 +48,6 @@ public class ProductPageActivity extends AppCompatActivity {
         productTitle.setText(product.name);
         pricePerUnit.setText("XX,xx € / unit");
         productDescription.setText(product.description);
-        productImage.setImageResource(product.mainPicture);
         returnButton.setOnClickListener(v -> {
             returnButton();
         });

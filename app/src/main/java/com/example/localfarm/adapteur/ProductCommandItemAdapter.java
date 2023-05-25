@@ -61,7 +61,7 @@ public class ProductCommandItemAdapter extends BaseAdapter {
         TextView totalPrice             = layoutItem.findViewById(R.id.cardProductPricePerUnit);
 
         //(3) : Renseignement des valeurs
-        productPicture.setImageResource(product.mainPicture);
+
         productTitle.setText(product.name);
         productDescription.setText(product.description);
         productQuantity.setText(String.format("%.3f",command.getQuantity()));
