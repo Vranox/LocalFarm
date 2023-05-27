@@ -5,6 +5,7 @@ import static java.security.AccessController.getContext;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -33,7 +34,14 @@ public class HomepageConnectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FirebaseApp.initializeApp(this);
-        setContentView(R.layout.homepage_connection);
+
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            setContentView(R.layout.homepage_connection);
+        } else {
+            setContentView(R.layout.homepage_connection_landscape);
+        }
+
         SharedPreferences sharedPrefs = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
         boolean rememberMe = sharedPrefs.getBoolean("rememberMe", false);
         if(rememberMe) {
