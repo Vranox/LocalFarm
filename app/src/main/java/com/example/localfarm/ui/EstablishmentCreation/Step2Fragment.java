@@ -70,18 +70,22 @@ public class Step2Fragment extends Fragment {
         } else {
             root = inflater.inflate(R.layout.fragment_step2, container, false);
         }
+
         return root;
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // Initialize UI elements
         initUIElements(view);
         establishment = mOnDataChangeListener.getEstablishment();
-        currentDaySchedule = establishment.horaires.get("Lundi");
+        if(establishment != null)
+            currentDaySchedule = establishment.horaires.get("Lundi");
         currentDay = Lundi;
         // Load current Schedule
-        refreshSchedule();
+        if(establishment != null)
+            refreshSchedule();
 
         // Set up navigation
         setupNavigation();
