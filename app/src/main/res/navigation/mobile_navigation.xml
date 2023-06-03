@@ -21,7 +21,7 @@
         android:id="@+id/navigation_notifications"
         android:name="com.example.localfarm.ui.profile.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profil" />
+        tools:layout="@layout/fragment_profil_landscape" />
     <!--
         android:id="@+id/navigation_order"
         android:name="com.example.localfarm.order.OrderFragment"
