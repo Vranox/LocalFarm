@@ -19,8 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.localfarm.R;
 
-import com.example.localfarm.models.Account;
-import com.example.localfarm.models.Establishment;
+import com.example.localfarm.models.actor.Account;
+import com.example.localfarm.models.actor.Establishment;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
