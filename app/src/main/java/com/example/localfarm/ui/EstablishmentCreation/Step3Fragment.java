@@ -3,6 +3,7 @@ package com.example.localfarm.ui.EstablishmentCreation;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -56,6 +57,8 @@ public class Step3Fragment extends Fragment {
     private OnDataChangeListener mOnDataChangeListener;
     ActivityResultLauncher<Intent> activityResultLauncher;
 
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +87,13 @@ public class Step3Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_step3, container, false);
+        ;
+        Configuration configuration = getResources().getConfiguration();
+        if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            view = inflater.inflate(R.layout.fragment_step3_landscape, container, false);
+        } else {
+            view = inflater.inflate(R.layout.fragment_step3, container, false);
+        }
 
         if (!Places.isInitialized()) {
             Places.initialize(requireContext(), apiKey);
