@@ -3,6 +3,7 @@ package com.example.localfarm.ui.EstablishmentCreation;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -46,6 +47,14 @@ public class Step4Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_step4, container, false);
+
+        Configuration configuration = getResources().getConfiguration();
+        if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            view = inflater.inflate(R.layout.fragment_step4_landscape, container, false);
+        } else {
+            view = inflater.inflate(R.layout.fragment_step4, container, false);
+        }
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         establishmentRef = database.getReference("establishment");
         storageRef = FirebaseStorage.getInstance().getReference();
