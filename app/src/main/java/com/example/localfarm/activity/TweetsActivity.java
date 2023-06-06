@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -24,7 +25,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
+import java.util.ArrayList;
 import java.util.List;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 
 public class TweetsActivity extends Activity {
@@ -45,7 +51,7 @@ public class TweetsActivity extends Activity {
             @Override
             public void run() {
                 try {
-                    URL url = new URL("https://twitter135.p.rapidapi.com/Search/?q=Dogecoin&count=5");
+                    URL url = new URL("https://twitter135.p.rapidapi.com/v2/UserTweets/?id=1666119886706208769&count=40");
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
                     // Définir les en-têtes de la requête
@@ -70,7 +76,14 @@ public class TweetsActivity extends Activity {
 
                         // Afficher la réponse dans les logs
                         Log.d("HTTP Response", response.toString());
-                        workJsonData(response.toString());
+                        ArrayList<Tweet> tweetsList = workJsonData(response.toString());
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                printTweetsOnPage(tweetsList);
+                            }
+                        });
+
                     } else {
                         Log.e("HTTP Error", "Response Code: " + responseCode);
                     }
@@ -83,7 +96,35 @@ public class TweetsActivity extends Activity {
         }).start();
     }
 
-    public void workJsonData(String response){
+    public ArrayList<Tweet> workJsonData(String response){
+
+        ArrayList<Tweet> tweets = new ArrayList<>();
+        String regex = "full_text.*?is_quote";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(response);
+
+        while (matcher.find()) {
+            String match = matcher.group();
+            match = match.replace("full_text\":\"", "");
+            match = match.replace("\",\"is_quote","");
+            match = match.replace("\\\\n", "");
+
+            Pattern unicodePattern = Pattern.compile("\\\\u[0-9a-fA-F]{4}");
+            Matcher unicodeMatcher = unicodePattern.matcher(match);
+            match = unicodeMatcher.replaceAll("");
+
+            Log.d("TEST MATCH", match);
+            tweets.add(new Tweet(match));
+        }
+
+        return tweets;
+    }
+
+    public void printTweetsOnPage(ArrayList<Tweet> tweets){
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_tweets);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this)); // Ajoutez cette ligne pour définir le gestionnaire de disposition
+        TweetsAdapter adapter = new TweetsAdapter(tweets); // tweetList est une liste d'objets Tweet
+        recyclerView.setAdapter(adapter);
 
     }
 }
