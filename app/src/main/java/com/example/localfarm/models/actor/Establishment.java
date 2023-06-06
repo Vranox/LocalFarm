@@ -1,6 +1,7 @@
-package com.example.localfarm.models;
+package com.example.localfarm.models.actor;
 
-import android.net.Uri;
+import com.example.localfarm.models.common.Position;
+import com.example.localfarm.models.common.Schedule;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +10,7 @@ public class Establishment {
     public String title;
     public String imageUri;
     public String description;
-    public Map<String,Schedule> horaires;
+    public Map<String, Schedule> horaires;
     public Position position;
     public String id;
 

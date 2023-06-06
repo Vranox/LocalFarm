@@ -5,6 +5,15 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,11 +21,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.localfarm.R;
 
+
 import com.example.localfarm.models.Tweet;
 
-import com.example.localfarm.recyclerview.TweetsAdapter;
+import com.example.localfarm.adapteur.recyclerview.TweetsAdapter;
 
 import com.google.firebase.database.DatabaseReference;
+
+import com.example.localfarm.models.Tweet;
+import com.example.localfarm.adapteur.recyclerview.TweetsAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
