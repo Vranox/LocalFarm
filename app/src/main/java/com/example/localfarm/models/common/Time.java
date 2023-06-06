@@ -1,10 +1,8 @@
-package com.example.localfarm.models;
+package com.example.localfarm.models.common;
 
 import com.google.firebase.database.PropertyName;
 
-import java.time.LocalTime;
 import java.util.Calendar;
-import java.util.Date;
 
 public class Time implements Comparable<Time>{
     @PropertyName("hour")

@@ -1,6 +1,6 @@
 package com.example.localfarm.singleton;
 
-import com.example.localfarm.models.EstablishmentWithDistance;
+import com.example.localfarm.models.actor.EstablishmentWithDistance;
 
 import java.util.ArrayList;
 import java.util.List;

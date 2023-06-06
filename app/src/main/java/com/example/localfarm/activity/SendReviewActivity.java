@@ -8,9 +8,9 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 
 import com.example.localfarm.R;
-import com.example.localfarm.models.Account;
-import com.example.localfarm.models.Establishment;
 import com.example.localfarm.models.Review;
+import com.example.localfarm.models.actor.Account;
+import com.example.localfarm.models.actor.Establishment;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

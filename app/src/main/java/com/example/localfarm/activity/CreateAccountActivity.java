@@ -11,21 +11,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.localfarm.R;
-import com.example.localfarm.models.Account;
-import com.example.localfarm.ui.dashboard.DashboardFragment;
+import com.example.localfarm.models.actor.Account;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.UUID;
 public class CreateAccountActivity extends AppCompatActivity{
 

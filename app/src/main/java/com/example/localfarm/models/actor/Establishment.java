@@ -1,16 +1,19 @@
-package com.example.localfarm.models;
-import java.util.ArrayList;
-import java.util.List;
-import android.net.Uri;
+package com.example.localfarm.models.actor;
 
+import com.example.localfarm.models.Review;
+import com.example.localfarm.models.common.Position;
+import com.example.localfarm.models.common.Schedule;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Establishment {
     public String title;
     public String imageUri;
     public String description;
-    public Map<String,Schedule> horaires;
+    public Map<String, Schedule> horaires;
     public Position position;
     public List<Review> comments;
     public String id;

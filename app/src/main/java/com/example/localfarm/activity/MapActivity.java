@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.localfarm.R;
-import com.example.localfarm.models.Establishment;
-import com.example.localfarm.models.EstablishmentWithDistance;
-import com.example.localfarm.recyclerview.EstablishmentAdapter;
+import com.example.localfarm.models.actor.Establishment;
+import com.example.localfarm.models.actor.EstablishmentWithDistance;
+import com.example.localfarm.adapteur.recyclerview.EstablishmentAdapter;
 import com.example.localfarm.singleton.EstablishmentManager;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,7 +22,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {

@@ -27,20 +27,15 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.example.localfarm.R;
-import com.example.localfarm.models.Establishment;
-import com.example.localfarm.models.Position;
+import com.example.localfarm.models.actor.Establishment;
+import com.example.localfarm.models.common.Position;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
 import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
-import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
-import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
 import java.util.Arrays;
