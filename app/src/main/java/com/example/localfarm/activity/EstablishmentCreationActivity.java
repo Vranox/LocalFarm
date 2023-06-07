@@ -1,11 +1,13 @@
 package com.example.localfarm.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -19,8 +21,17 @@ public class EstablishmentCreationActivity extends AppCompatActivity implements 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_establishment_creation);
+
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.activity_establishment_creation_landscape);
+        } else {
+            setContentView(R.layout.activity_establishment_creation);
+        }
+        Toolbar toolbar = findViewById(R.id.toolbar);
+
         /*Toolbar toolbar = findViewById(R.id.toolbar);
+>>>>>>> develop
         setSupportActionBar(toolbar);
 
         // Enable the "up" button in the support ActionBar

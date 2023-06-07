@@ -3,6 +3,7 @@ package com.example.localfarm.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -29,7 +30,13 @@ public class CreateAccountActivity extends AppCompatActivity{
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_account);
+
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            setContentView(R.layout.create_account);
+        } else {
+            setContentView(R.layout.create_account_landscape);
+        }
 
         EditText emailEditText = findViewById(R.id.email_input);
         EditText passwordInput = findViewById(R.id.password_input);

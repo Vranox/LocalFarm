@@ -2,6 +2,7 @@ package com.example.localfarm.ui.EstablishmentCreation;
 
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,19 +63,29 @@ public class Step2Fragment extends Fragment {
     private OnDataChangeListener mOnDataChangeListener;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_step2, container, false);
-        return view;
+        View root;
+        Configuration configuration = getResources().getConfiguration();
+        if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            root = inflater.inflate(R.layout.fragment_step2_landscape, container, false);
+        } else {
+            root = inflater.inflate(R.layout.fragment_step2, container, false);
+        }
+
+        return root;
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // Initialize UI elements
         initUIElements(view);
         establishment = mOnDataChangeListener.getEstablishment();
-        currentDaySchedule = establishment.horaires.get("Lundi");
+        if(establishment != null)
+            currentDaySchedule = establishment.horaires.get("Lundi");
         currentDay = Lundi;
         // Load current Schedule
-        refreshSchedule();
+        if(establishment != null)
+            refreshSchedule();
 
         // Set up navigation
         setupNavigation();

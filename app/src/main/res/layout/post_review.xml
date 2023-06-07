@@ -73,7 +73,7 @@
 
         <!-- Numéro de téléphone -->
         <EditText
-            android:id="@+id/phone_edittext"
+            android:id="@+id/phone_edit_text"
             android:layout_width="match_parent"
             android:layout_height="95dp"
             android:hint="Veuillez renseigner ici, votre commentaire vis à \nvis de l'établissement"
@@ -88,7 +88,7 @@
 
         <!-- Bouton de déconnexion -->
         <Button
-            android:id="@+id/logout_button"
+            android:id="@+id/send_comment_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="ENVOYER "

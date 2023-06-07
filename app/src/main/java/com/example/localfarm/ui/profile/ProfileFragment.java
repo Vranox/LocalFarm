@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -39,7 +40,13 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_profil, container, false);
+        View root;
+        Configuration configuration = getResources().getConfiguration();
+        if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            root = inflater.inflate(R.layout.fragment_profil_landscape, container, false);
+        } else {
+            root = inflater.inflate(R.layout.fragment_profil, container, false);
+        }
 
         lvOptions = root.findViewById(R.id.lvOptions);
         btnLogout = root.findViewById(R.id.btnLogout);
