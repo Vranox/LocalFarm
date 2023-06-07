@@ -1,0 +1,8 @@
+<!-- tweet_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFFFFF"/> <!-- Couleur de remplissage du contour -->
+    <corners android:radius="8dp"/> <!-- Rayon des coins du contour -->
+    <stroke
+        android:color="#CCCCCC"
+        android:width="1dp"/> <!-- Épaisseur de la bordure du contour -->
+</shape>
