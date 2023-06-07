@@ -156,6 +156,8 @@ public class HomepageConnectionActivity extends AppCompatActivity {
                 Establishment establishment;
                 for (DataSnapshot accountSnapshot : snapshot.getChildren()) {
                     Establishment est = accountSnapshot.getValue(Establishment.class);
+                    if(est.getId_owner() == null)
+                        break;
                     if(est.getId_owner().equals(id)){
                         found = true;
                         break;
