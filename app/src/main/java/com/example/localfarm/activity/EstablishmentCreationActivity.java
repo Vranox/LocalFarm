@@ -1,6 +1,7 @@
 package com.example.localfarm.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -9,7 +10,6 @@ import androidx.navigation.ui.NavigationUI;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toolbar;
 
 import com.example.localfarm.R;
 import com.example.localfarm.models.actor.Establishment;
