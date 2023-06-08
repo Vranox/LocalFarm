@@ -190,7 +190,6 @@ public class EstablishmentProfile extends AppCompatActivity implements ProductEs
             public void onClick(View v) {
                 Intent intent = new Intent(ContactsContract.Intents.Insert.ACTION);
                 intent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
-
                 intent.putExtra(ContactsContract.Intents.Insert.NAME, ownerAccount.getName());
                 intent.putExtra(ContactsContract.Intents.Insert.EMAIL, ownerAccount.getEmail());
                 intent.putExtra(ContactsContract.Intents.Insert.PHONE, ownerAccount.getPhone());
