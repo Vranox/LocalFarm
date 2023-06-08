@@ -1,13 +1,16 @@
 package com.example.localfarm.activity;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,6 +28,7 @@ import com.example.localfarm.models.actor.EstablishmentWithDistance;
 import com.example.localfarm.models.common.DayOfWeek;
 import com.example.localfarm.models.common.Schedule;
 import com.example.localfarm.models.common.Time;
+import com.example.localfarm.models.products.Cart;
 import com.example.localfarm.models.products.Products;
 import com.example.localfarm.singleton.EstablishmentManager;
 import com.google.firebase.database.DataSnapshot;
@@ -36,8 +40,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 
-public class EstablishmentProfile extends AppCompatActivity {
+public class EstablishmentProfile extends AppCompatActivity implements ProductEstablishmentProfilAdapter.OnProductClickListener, Observer {
     ImageView profileImage;
     ImageView establishmentImage;
     TextView addressEstablishment;
@@ -53,8 +59,11 @@ public class EstablishmentProfile extends AppCompatActivity {
     Button buttonMap;
     EstablishmentWithDistance selectedEstablishment;
     Establishment establishment;
+    Account ownerProfile;
     com.example.localfarm.models.actor.Account ownerAccount;
     Toolbar toolbar;
+    Cart cart;
+    int cartNumber = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +74,11 @@ public class EstablishmentProfile extends AppCompatActivity {
             selectedEstablishment = EstablishmentManager.getInstance().getEstablishments().get(index);
             establishment = selectedEstablishment.getEstablishment();
         }
+        ownerProfile = new Account();
+        ownerProfile.setName("Dubois");
+        ownerProfile.setSurname("Jean");
+        ownerProfile.setEmail("jean@gmail.com");
+        ownerProfile.setPhone("0612345678");
         DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("account");
         DatabaseReference userRef = usersRef.child(establishment.getId_owner());
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -80,9 +94,9 @@ public class EstablishmentProfile extends AppCompatActivity {
                 initializeViews();
                 RecyclerView productsRecyclerView = findViewById(R.id.products_recycler_view);
                 productsRecyclerView.setLayoutManager(new LinearLayoutManager(EstablishmentProfile.this));
-
                 List<Products> productsList = Products.staticList();
-                ProductEstablishmentProfilAdapter adapter = new ProductEstablishmentProfilAdapter(EstablishmentProfile.this, productsList);
+                ProductEstablishmentProfilAdapter adapter = new ProductEstablishmentProfilAdapter(EstablishmentProfile.this, productsList,cart);
+                adapter.setOnProductClickListener(EstablishmentProfile.this); // this refers to EstablishmentProfile
                 productsRecyclerView.setAdapter(adapter);
 
             }
@@ -98,6 +112,8 @@ public class EstablishmentProfile extends AppCompatActivity {
 
 
     private void initializeViews() {
+        cart = new Cart();
+        cart.addObserver(this);
         establishmentImage = findViewById(R.id.establismentImage);
         addressEstablishment = findViewById(R.id.textAddress);
         profileImage = findViewById(R.id.ivProfile);
@@ -133,8 +149,8 @@ public class EstablishmentProfile extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         descriptionEstablishment.setText(establishment.getDescription());
         addressEstablishment.setText(establishment.getPosition().address);
-        nameProfile.setText(ownerAccount.getName());
-        surnameProfile.setText(ownerAccount.getSurname());
+        nameProfile.setText(ownerProfile.getName());
+        surnameProfile.setText(ownerProfile.getSurname());
         Time timeOfNow = new Time();
         Schedule schedule = establishment.getHoraires(DayOfWeek.valueOf(timeOfNow.getDayOfWeek()).getFrenchName());
                 if (schedule != null) {
@@ -148,6 +164,43 @@ public class EstablishmentProfile extends AppCompatActivity {
                         scheduleEstablishment.setText("• Ouvre à " + schedule.getOpenTime(timeOfNow));
                     }
                 }
+        buttonProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showProfileDialog();
+            }
+        });
+    }
+    @Override
+    public void onAddToCart(Products product) {
+        System.out.println("Le controlleur est notifié du clique dans la vue et passe l'inforamtion au modèle");
+        cart.addProductToCart(product);
+    }
+    private void showProfileDialog() {
+        Dialog profileDialog = new Dialog(EstablishmentProfile.this);
+        profileDialog.setContentView(R.layout.dialog_profile);
+
+        de.hdodenhof.circleimageview.CircleImageView dialogIvProfile = profileDialog.findViewById(R.id.ivProfile);
+        TextView dialogTvNameSurname = profileDialog.findViewById(R.id.dialogTvNameSurname);
+        Button dialogButtonAddContact = profileDialog.findViewById(R.id.dialogButtonAddContact);
+        dialogTvNameSurname.setText(ownerProfile.getName() + " " + ownerProfile.getSurname());
+
+        dialogButtonAddContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ContactsContract.Intents.Insert.ACTION);
+                intent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
+
+                intent.putExtra(ContactsContract.Intents.Insert.NAME, ownerAccount.getName());
+                intent.putExtra(ContactsContract.Intents.Insert.EMAIL, ownerAccount.getEmail());
+                intent.putExtra(ContactsContract.Intents.Insert.PHONE, ownerAccount.getPhone());
+
+                startActivity(intent);
+                profileDialog.dismiss();
+            }
+        });
+
+        profileDialog.show();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -239,4 +292,10 @@ public class EstablishmentProfile extends AppCompatActivity {
         dialog.show();
     }
 
+    @Override
+    public void update(Observable observable, Object o) {
+        System.out.println("La nouvelle valeur du panier est modifié dans le controleur");
+        cartNumber++;
+        shoppingCount.setText(String.valueOf(cartNumber));
+    }
 }

@@ -67,15 +67,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        // Écouteur d'événements pour le bouton de déconnexion
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Code à exécuter lorsque le bouton de déconnexion est cliqué.
-                logout();
-            }
-        });
-
 
         //Modification du texte dans le bouton sur l'établissement en fonction de si le profil possède un établissement
         SharedPreferences sharedPrefs = getActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE);

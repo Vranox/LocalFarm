@@ -14,7 +14,7 @@ import com.example.localfarm.R;
 
 import com.example.localfarm.factory.Tweet;
 
-import com.example.localfarm.adapteur.recyclerview.TweetsAdapter;
+import com.example.localfarm.adapteur.TweetsAdapter;
 
 import com.example.localfarm.factory.TweetFactory;
 import com.google.firebase.database.DatabaseReference;
