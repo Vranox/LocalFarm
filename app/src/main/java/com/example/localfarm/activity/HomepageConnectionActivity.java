@@ -92,12 +92,9 @@ public class HomepageConnectionActivity extends AppCompatActivity {
                         boolean isFound = false;
                         for (DataSnapshot accountSnapshot : dataSnapshot.getChildren()) {
                             Account account = accountSnapshot.getValue(Account.class);
-
-                            if(account.getEmail().equals(email)) Log.d("Simon", "EMAIL");
-                            if(account.getPassword().equals(password)) Log.d("Simon", "PASSWORD");
-
                             CheckBox rememberMeCheckbox = findViewById(R.id.remember_me_checkbox);
                             if (account.getEmail().equals(email) && account.getPassword().equals(password)) {
+                                System.out.println("Account found : " + account.getEmail() + " " + account.getPassword());
                                 // Le couple e-mail/mot de passe correspond à un compte dans la base de données
                                 isFound = true;
 

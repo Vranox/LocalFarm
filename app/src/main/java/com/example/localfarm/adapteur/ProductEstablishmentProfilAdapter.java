@@ -62,7 +62,6 @@ public class ProductEstablishmentProfilAdapter extends RecyclerView.Adapter<Prod
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             imageView = itemView.findViewById(R.id.image);
             nameTextView = itemView.findViewById(R.id.name);
             descriptionTextView = itemView.findViewById(R.id.description);
