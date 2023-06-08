@@ -4,7 +4,10 @@ import android.app.Activity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,7 +38,7 @@ import java.util.regex.Pattern;
 
 
 
-public class TweetsActivity extends Activity {
+public class TweetsActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private TweetsAdapter mAdapter;
@@ -96,6 +99,9 @@ public class TweetsActivity extends Activity {
                 }
             }
         }).start();
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public ArrayList<Tweet> workJsonData(String response){
@@ -129,5 +135,15 @@ public class TweetsActivity extends Activity {
         TweetsAdapter adapter = new TweetsAdapter(tweets); // tweetList est une liste d'objets Tweet
         recyclerView.setAdapter(adapter);
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
