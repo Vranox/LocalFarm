@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.localfarm.R;
+import com.example.localfarm.adapteur.EstablishmentAdapter;
 import com.example.localfarm.models.actor.Establishment;
 import com.example.localfarm.models.actor.EstablishmentWithDistance;
-import com.example.localfarm.adapteur.recyclerview.EstablishmentAdapter;
 import com.example.localfarm.singleton.EstablishmentManager;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -83,7 +83,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        System.out.println("onOptionsItemSelected");
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();

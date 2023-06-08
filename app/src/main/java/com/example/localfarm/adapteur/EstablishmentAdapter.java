@@ -1,5 +1,6 @@
-package com.example.localfarm.adapteur.recyclerview;
+package com.example.localfarm.adapteur;
 
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.view.LayoutInflater;
@@ -12,9 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.localfarm.R;
-import com.example.localfarm.models.common.DayOfWeek;
+import com.example.localfarm.activity.EstablishmentProfile;
 import com.example.localfarm.models.actor.Establishment;
 import com.example.localfarm.models.actor.EstablishmentWithDistance;
+import com.example.localfarm.models.common.DayOfWeek;
 import com.example.localfarm.models.common.Schedule;
 import com.example.localfarm.models.common.Time;
 
@@ -59,7 +61,6 @@ public class EstablishmentAdapter extends RecyclerView.Adapter<EstablishmentAdap
             nameTextView.setText(establishment.getTitle());
             distanceTextView.setText(String.format("%.2f km", establishmentWithDistance.distance / 1000));
             Time timeOfNow = new Time();
-            System.out.println("DAYOFWEEK: "+timeOfNow);
             Schedule schedule = establishment.getHoraires(DayOfWeek.valueOf(timeOfNow.getDayOfWeek()).getFrenchName());
             Geocoder geocoder = new Geocoder(itemView.getContext(), Locale.getDefault());
             try {
@@ -96,7 +97,9 @@ public class EstablishmentAdapter extends RecyclerView.Adapter<EstablishmentAdap
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Handle click event
+                    Intent intent = new Intent(v.getContext(), EstablishmentProfile.class);
+                    intent.putExtra("selected_establishment_index", getAdapterPosition());
+                    v.getContext().startActivity(intent);
                 }
             });
 

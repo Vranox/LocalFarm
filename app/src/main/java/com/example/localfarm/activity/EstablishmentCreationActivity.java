@@ -21,7 +21,6 @@ public class EstablishmentCreationActivity extends AppCompatActivity implements 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.activity_establishment_creation_landscape);
@@ -29,13 +28,8 @@ public class EstablishmentCreationActivity extends AppCompatActivity implements 
             setContentView(R.layout.activity_establishment_creation);
         }
         Toolbar toolbar = findViewById(R.id.toolbar);
-
-        /*Toolbar toolbar = findViewById(R.id.toolbar);
->>>>>>> develop
         setSupportActionBar(toolbar);
-
-        // Enable the "up" button in the support ActionBar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     @Override
     public boolean onSupportNavigateUp() {

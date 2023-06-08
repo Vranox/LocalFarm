@@ -109,6 +109,9 @@ public class Step4Fragment extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(establishment.imageUri == null) {
+                    establishment.imageUri = "https://firebasestorage.googleapis.com/v0/b/localfarm-a7781.appspot.com/o/images%2F1000030840?alt=media&token=ee106ab1-8cec-45df-a964-ffbfb50e7837";
+                }
                 String key = establishmentRef.push().getKey();
                 establishmentRef.child(key).setValue(establishment)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -71,6 +71,7 @@
                 android:id="@+id/iconDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 app:srcCompat="@drawable/baseline_social_distance_24"
                 app:layout_constraintStart_toEndOf="@+id/layoutSchedule"
                 app:layout_constraintTop_toBottomOf="@+id/locationView" />
@@ -79,7 +80,7 @@
                 android:id="@+id/textDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="6dp"
                 android:text="5 km"
                 app:layout_constraintStart_toEndOf="@+id/iconDistance"
                 app:layout_constraintTop_toBottomOf="@+id/locationView" />
@@ -89,8 +90,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:clickable="true"
                 android:orientation="horizontal"
+                android:gravity="center_vertical"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/locationView"
                 android:focusable="true">
