@@ -14,7 +14,7 @@ public class Establishment {
     public String imageUri;
     public String description;
     public Map<String, Schedule> horaires;
-    List<Products> products;
+    public List<Products> products;
     public Position position;
     public String id;
 
@@ -54,6 +54,14 @@ public class Establishment {
 
     public String getTitle() {
         return title;
+    }
+
+    public List<Products> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Products> products) {
+        this.products = products;
     }
 
     public void setTitle(String title) {

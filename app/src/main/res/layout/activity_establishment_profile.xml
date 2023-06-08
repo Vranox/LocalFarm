@@ -145,20 +145,10 @@
         app:layout_constraintStart_toEndOf="@+id/establismentImage"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-        <TextView
-            android:id="@+id/establishmentName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="La ferme d'antan"
-            android:textColor="@color/quantum_grey800"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginRight="5dp"/>
-
         <ImageView
             android:id="@+id/favoriteIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_favorite"
@@ -169,7 +159,7 @@
         android:id="@+id/black_line"
         android:layout_width="80dp"
         android:layout_height="1.5dp"
-        android:background="@android:color/black"
+        android:background="@android:color/white"
         app:layout_constraintTop_toBottomOf="@+id/title_layout"
         app:layout_constraintStart_toEndOf="@id/establismentImage"
         app:layout_constraintEnd_toEndOf="parent"
