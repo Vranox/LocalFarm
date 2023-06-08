@@ -2,18 +2,15 @@ package com.example.localfarm.activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -81,14 +78,12 @@ public class EstablishmentProfile extends AppCompatActivity implements ProductEs
         ownerProfile.setSurname("Jean");
         ownerProfile.setEmail("jean@gmail.com");
         ownerProfile.setPhone("0612345678");
-
         DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("account");
         DatabaseReference userRef = usersRef.child(establishment.getId_owner());
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-
                     ownerAccount = dataSnapshot.getValue(Account.class);
                     SharedPreferences sharedPrefs = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPrefs.edit();
