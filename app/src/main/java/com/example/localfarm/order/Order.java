@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.order;
+package com.example.localfarm.order;
 
 public class Order {
     private final String label;
@@ -10,8 +10,8 @@ public class Order {
 
     public Order(String label, String src, String dest, int totalPrice) {
         this.label = label;
-        this.source = src;
-        this.destination = dest;
+        this.source = "src : " + src;
+        this.destination = "dest : " + dest;
         this.totalPrice = totalPrice;
         this.state = OrderState.Ongoing;
     }

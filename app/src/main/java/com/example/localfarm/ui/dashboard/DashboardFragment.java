@@ -1,11 +1,14 @@
 package com.example.localfarm.ui.dashboard;
 
+import static androidx.databinding.DataBindingUtil.setContentView;
+
 import static android.content.ContentValues.TAG;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.localfarm.R;
 import com.example.localfarm.activity.MapActivity;
+import com.example.localfarm.activity.TweetsActivity;
 import com.example.localfarm.databinding.FragmentDashboardBinding;
 import com.example.localfarm.adapteur.EstablishmentAdapter;
 import com.example.localfarm.models.actor.Establishment;
@@ -71,9 +75,23 @@ public class DashboardFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        return root;
-    }
+        int orientation = getResources().getConfiguration().orientation;
 
+        // Determine the layout file based on the orientation
+        int layoutRes;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            layoutRes = R.layout.fragment_dashboard_landscape;
+        } else {
+            layoutRes = R.layout.fragment_dashboard;
+        }
+
+        // Inflate the appropriate layout file
+        View rootView = inflater.inflate(layoutRes, container, false);
+
+        // Rest of your code...
+
+        return rootView;
+    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -134,7 +152,6 @@ public class DashboardFragment extends Fragment {
                                     List<EstablishmentWithDistance> establishmentsWithDistance = new ArrayList<>();
                                     for (Establishment establishment : establishments) {
                                         Location establishmentLocation = new Location("");
-                                        System.out.println(establishment.toString());
                                         establishmentLocation.setLatitude(establishment.getPosition().getLat());
                                         establishmentLocation.setLongitude(establishment.getPosition().getLng());
                                         float distance = location.distanceTo(establishmentLocation);
@@ -162,6 +179,15 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), MapActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button buttonTwitter2 = view.findViewById(R.id.button_twitter2);
+        buttonTwitter2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), TweetsActivity.class);
                 startActivity(intent);
             }
         });
@@ -226,4 +252,5 @@ public class DashboardFragment extends Fragment {
             }
         });
     }
+
 }

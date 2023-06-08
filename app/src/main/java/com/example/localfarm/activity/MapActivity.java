@@ -1,5 +1,6 @@
 package com.example.localfarm.activity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -32,7 +33,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+
+        // Check the screen orientation
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.activity_maps_landscape);
+        } else {
+            setContentView(R.layout.activity_maps);
+        }
+
         establishmentsWithDistance = EstablishmentManager.getInstance().getEstablishments();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -44,7 +53,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
     @Override

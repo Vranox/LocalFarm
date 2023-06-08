@@ -2,6 +2,7 @@ package com.example.localfarm.ui.EstablishmentCreation;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -28,8 +29,14 @@ public class Step1Fragment extends Fragment {
     EditText establishmentDescription;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_step1, container, false);
-        return view;
+        View root;
+        Configuration configuration = getResources().getConfiguration();
+        if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            root = inflater.inflate(R.layout.fragment_step1_landscape, container, false);
+        } else {
+            root = inflater.inflate(R.layout.fragment_step1, container, false);
+        }
+        return root;
     }
 
     @Override

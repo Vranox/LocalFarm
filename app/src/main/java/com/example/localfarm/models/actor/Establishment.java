@@ -1,5 +1,6 @@
 package com.example.localfarm.models.actor;
 
+import com.example.localfarm.models.Review;
 import com.example.localfarm.models.common.Position;
 import com.example.localfarm.models.common.Schedule;
 import com.example.localfarm.models.products.Products;
@@ -16,6 +17,7 @@ public class Establishment {
     public Map<String, Schedule> horaires;
     public List<Products> products;
     public Position position;
+    public List<Review> comments;
     public String id;
 
 
@@ -27,6 +29,7 @@ public class Establishment {
         this.title = title;
         this.description = description;
         this.horaires = horaires;
+        this.comments = new ArrayList<>();
         this.id = id;
         this.products = new ArrayList<>();
     }
@@ -82,6 +85,10 @@ public class Establishment {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void addComment(Review c){
+        this.comments.add(c);
     }
 
     public Schedule getHoraires(String dayOfWeek) {

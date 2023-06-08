@@ -1,11 +1,10 @@
-package com.example.myapplication.ui.order;
+package com.example.localfarm.order;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.localfarm.R;
@@ -49,7 +48,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         Order currentItem = mOrderList.get(position);
 
         holder.mLabelTextView.setText(currentItem.getLabel());
-        holder.mTotalPriceTextView.setText(String.valueOf(currentItem.getTotalPrice()));
+        holder.mTotalPriceTextView.setText(String.valueOf(currentItem.getTotalPrice()) + "€");
         holder.mSourceTextView.setText(currentItem.getSource());
         holder.mDestinationTextView.setText(currentItem.getDestination());
 
@@ -57,13 +56,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
         switch(currentItem.getState()) {
             case Delivered:
-                stateText = "Delivered";
+                stateText = "Livré";
                 break;
             case Ongoing:
-                stateText = "On going";
+                stateText = "En cours";
                 break;
             case Cancelled:
-                stateText = "Cancelled";
+                stateText = "Annulé";
                 break;
             default:
                 break;

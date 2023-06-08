@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.order;
+package com.example.localfarm.order;
 
 import android.os.Bundle;
 
@@ -7,11 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 public class OrderViewModel extends AppCompatActivity {
     private List<Order> orderList = new ArrayList<>();
