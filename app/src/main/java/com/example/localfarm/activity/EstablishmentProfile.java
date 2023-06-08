@@ -39,7 +39,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -60,7 +59,7 @@ public class EstablishmentProfile extends AppCompatActivity implements ProductEs
     EstablishmentWithDistance selectedEstablishment;
     Establishment establishment;
     Account ownerProfile;
-    com.example.localfarm.models.actor.Account ownerAccount;
+    public com.example.localfarm.models.actor.Account ownerAccount;
     Toolbar toolbar;
     Cart cart;
     int cartNumber = 0;
@@ -86,6 +85,12 @@ public class EstablishmentProfile extends AppCompatActivity implements ProductEs
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     ownerAccount = dataSnapshot.getValue(Account.class);
+                    SharedPreferences sharedPrefs = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPrefs.edit();
+                    editor.putString("email_ownerProfile",ownerAccount.getEmail());
+                    editor.putString("name_ownerProfile",ownerAccount.getName());
+                    editor.putString("phone_ownerProfile",ownerAccount.getPhone());
+                    editor.apply();
 
                 }
                 else {
@@ -185,14 +190,20 @@ public class EstablishmentProfile extends AppCompatActivity implements ProductEs
         Button dialogButtonAddContact = profileDialog.findViewById(R.id.dialogButtonAddContact);
         dialogTvNameSurname.setText(ownerProfile.getName() + " " + ownerProfile.getSurname());
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sharedPrefs = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+
         dialogButtonAddContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ContactsContract.Intents.Insert.ACTION);
                 intent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
-                intent.putExtra(ContactsContract.Intents.Insert.NAME, ownerAccount.getName());
-                intent.putExtra(ContactsContract.Intents.Insert.EMAIL, ownerAccount.getEmail());
-                intent.putExtra(ContactsContract.Intents.Insert.PHONE, ownerAccount.getPhone());
+
+                //Log.d("AAAAAAAAAA",sharedPrefs.getString("name_ownerProfile",""));
+
+                intent.putExtra(ContactsContract.Intents.Insert.NAME, "Dubois Jean");
+                intent.putExtra(ContactsContract.Intents.Insert.EMAIL, "jean@gmail.com");
+                intent.putExtra(ContactsContract.Intents.Insert.PHONE, "0612345678");
 
                 startActivity(intent);
                 profileDialog.dismiss();
