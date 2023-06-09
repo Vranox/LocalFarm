@@ -22,7 +22,6 @@ public class ProductCommandItemAdapter extends BaseAdapter {
     private AdapterView.OnItemClickListener clickListener;
     public ProductCommandItemAdapter(Context context, List<ProductOrder> productList){ this(context,productList,null);}
     public ProductCommandItemAdapter(Context context, List<ProductOrder> productList, AdapterView.OnItemClickListener clickListener) {
-        System.out.println("in "+this+" constructor: "+productList.size());
         mInflater = LayoutInflater.from(context);
         ProductList = productList;
         this.clickListener = clickListener;
@@ -30,7 +29,6 @@ public class ProductCommandItemAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        System.out.println("in "+this+" getCount: "+ProductList);
         return ProductList.size();
     }
 
@@ -48,7 +46,6 @@ public class ProductCommandItemAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         //(1) : Réutilisation des layouts
         View layoutItem = convertView == null ? mInflater.inflate(R.layout.product_command_card, parent, false) : convertView;
-        System.out.println("in adapter: "+ProductList.size());
         ProductOrder command = ProductList.get(position);
         Products product = command.getProduct();
 
@@ -64,7 +61,7 @@ public class ProductCommandItemAdapter extends BaseAdapter {
 
         productTitle.setText(product.name);
         productDescription.setText(product.description);
-        productQuantity.setText(String.format("%.3f",command.getQuantity()));
+        productQuantity.setText(command.getQuantityOrdered());
         totalPrice.setText(String.format("%.2f", product.priceFor(command.getQuantity()))+"€");
 
         if (clickListener != null) convertView.setOnClickListener(new View.OnClickListener() {

@@ -52,18 +52,13 @@ public class ProductPageActivity extends AppCompatActivity {
             returnButton();
         });
 
-        Account account = new Account("email@laposte.fr","secretthings","0123456789","Rallo","Frederic","UltimateDarkFarmer");
+        Account account = new Account("email@boitemail.fr","secretthings","0123456789","Rallo","Frederic","UltimateDarkFarmer");
         FragmentAccountCard fragment = FragmentAccountCard.newInstance((Parcelable)account);
 
-        // Commencer la transaction de fragment
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        // Ajouter le fragment à la transaction
-        fragmentTransaction.add(R.id.ProductPage_ProductorCardFragment, fragment);
-
-        // Terminer la transaction
-        fragmentTransaction.commit();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.ProductPage_ProductorCardFragment, fragment)
+                .commit();
     }
     public void returnButton(){
         Intent intent = new Intent(this,MainActivity.class);

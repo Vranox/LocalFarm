@@ -52,13 +52,16 @@ public class ProductOrder implements Parcelable {
 
     public static List<ProductOrder> staticList(){
         ArrayList<ProductOrder> list = new ArrayList<>();
-        list.add(new ProductOrder(new Products("Tomate label rouge", "","De magnifique tomates",3,4.5f,QuantityUnits.kg),5));
-        list.add(new ProductOrder(new Products("Lait Bio","","Lait Ecrémé",12,6,QuantityUnits.L),8));
-        list.add(new ProductOrder(new Products("Panier de tomates","","Le BIG panier de 3kg",3,2.5f,QuantityUnits.kg),6));
+        list.add(new ProductOrder(new Products("Tomate label rouge", R.drawable.tomate,"De magnifique tomates",3,4.5f,QuantityUnits.kg),5));
+        list.add(new ProductOrder(new Products("Lait Bio",R.drawable.lait,"Lait Ecrémé",12,6,QuantityUnits.L),8));
+        list.add(new ProductOrder(new Products("Panier de tomates",R.drawable.tomate,"Le BIG panier de 3kg",3,2.5f,QuantityUnits.kg),6));
         return list;
     }
-
-    public String toStringt(){
+    public float getPrice(){
+        return product.priceFor(quantity);
+    }
+    @Override
+    public String toString(){
         return this.product.name+" "+this.quantity;
     }
 
@@ -70,5 +73,9 @@ public class ProductOrder implements Parcelable {
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
         parcel.writeFloat(quantity);
+    }
+
+    public String getQuantityOrdered() {
+        return String.format(product.getUnit().getFormat(),quantity)+product.getUnit();
     }
 }

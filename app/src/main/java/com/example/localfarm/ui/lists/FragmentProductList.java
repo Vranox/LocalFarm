@@ -13,6 +13,7 @@ import com.example.localfarm.R;
 import com.example.localfarm.adapteur.ProductItemAdapter;
 import com.example.localfarm.models.products.Products;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -61,7 +62,7 @@ public class FragmentProductList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_product_list, container, false);
-        List<Products> productList = (mParam1!=null && mParam1.size()!=0) ? mParam1 :Products.staticList();
+        List<Products> productList = (mParam1!=null && mParam1.size()!=0) ? mParam1 : new ArrayList<>();
         // Inflate the layout for this fragment
         ProductItemAdapter adapter = new ProductItemAdapter(getActivity(),productList);
         ListView List = rootView.findViewById(R.id.FragmentProductList_list);

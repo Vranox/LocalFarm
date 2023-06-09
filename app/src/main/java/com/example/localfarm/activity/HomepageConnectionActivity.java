@@ -23,12 +23,19 @@ import com.example.localfarm.R;
 import com.example.localfarm.models.actor.Account;
 import com.example.localfarm.models.actor.Establishment;
 
+import com.example.localfarm.models.command.Command;
+import com.example.localfarm.models.command.CommandStatus;
+import com.example.localfarm.models.common.Date;
+import com.example.localfarm.models.common.Time;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class HomepageConnectionActivity extends AppCompatActivity {
 
@@ -119,16 +126,45 @@ public class HomepageConnectionActivity extends AppCompatActivity {
                                 editor.putString("id", account.getId());
                                 if (rememberMeCheckbox.isChecked()) {
                                     editor.putBoolean("rememberMe", true);
+                                    FirebaseMessaging.getInstance().getToken()
+                                            .addOnCompleteListener(new OnCompleteListener<String>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<String> task) {
+                                                    if (task.isSuccessful()) {
+                                                        String token = task.getResult();
+
+
+                                                        // Enregistrer le token FCM dans la base de données Firebase
+                                                        boolean tokenFound = false;
+                                                        for(DataSnapshot tokens : accountSnapshot.child("ActiveToken").getChildren()){
+                                                            if(!tokenFound && tokens.getValue(String.class).equals(token))tokenFound=true;
+                                                        }
+                                                        if(!tokenFound) accountSnapshot.getRef().child("ActiveToken").push().setValue(token);
+                                                    } else {
+                                                        Log.e("TAG", "Fetching FCM registration token failed", task.getException());
+                                                    }
+                                                }
+                                            });
                                 } else {
                                     editor.putBoolean("rememberMe", false);
                                 }
                                 editor.apply();
-                                findPotentialEstablishement(account.getId());
+                                //findPotentialEstablishement(account.getId());//TODO uncomment
                                 break;
                             }
                         }
                         if (isFound) {
                             Toast.makeText(HomepageConnectionActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
+
+                            Command command = new Command(
+                                    new Account("email","pssw","phone","name","surname","8f738ef3-a472-4b64-bea6-abb6fc577d3d"),
+                                    new Account("email","pssw","phone","name","surname","8f738ef3-a472-4b64-bea6-abb6fc577d3d"),
+                                    new Date(),
+                                    new Time()
+                            );
+                            command.setStatus(CommandStatus.Waiting);
+                            command.setStatus(CommandStatus.Accepted);
+                            command.setStatus(CommandStatus.Canceled);
                             Intent intent = new Intent(HomepageConnectionActivity.this, MainActivity.class);
                             startActivity(intent);
                         } else {

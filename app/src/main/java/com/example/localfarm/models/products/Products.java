@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Products {
     public String name;
-    public String mainPicture;
+    public int mainPicture;
     public String description;
     public float price;
     public float quantity;
@@ -18,13 +18,13 @@ public class Products {
 
     public static List<Products> staticList(){
         List<Products> list = new ArrayList<>();
-        list.add(new Products("Tomates", "https://firebasestorage.googleapis.com/v0/b/localfarm-a7781.appspot.com/o/images%2Ftomate.png?alt=media&token=3cb3524c-a0d7-4405-bcf4-183512d9f219", "1kg",1,2,QuantityUnits.kg));
-        list.add(new Products("Lait", "https://firebasestorage.googleapis.com/v0/b/localfarm-a7781.appspot.com/o/images%2Flait.png?alt=media&token=a1c36ba4-b6ca-4157-b58b-9d01bc506e1f", "description",6,2.5f,QuantityUnits.L));
-        list.add(new Products("Panier de Tomates", "https://firebasestorage.googleapis.com/v0/b/localfarm-a7781.appspot.com/o/images%2Ftomate.png?alt=media&token=3cb3524c-a0d7-4405-bcf4-183512d9f219", "panier de 5kg",5,4.5f,QuantityUnits.kg));
+        list.add(new Products("Tomates", R.drawable.tomate, "1kg",1,2,QuantityUnits.kg));
+        list.add(new Products("Lait", R.drawable.lait, "description",6,2.5f,QuantityUnits.L));
+        list.add(new Products("Panier de Tomates", R.drawable.tomate, "panier de 5kg",5,4.5f,QuantityUnits.kg));
         return list;
     }
 
-    public Products(String name, String mainPicture, String description, float qty,float price,QuantityUnits unit){
+    public Products(String name, int mainPicture, String description, float qty,float price,QuantityUnits unit){
         this.name = name;
         this.mainPicture = mainPicture;
         this.description = description;
@@ -40,8 +40,11 @@ public class Products {
     public String getDescription() {
         return description;
     }
-    public String getMainPicture() {
+    public int getMainPicture() {
         return mainPicture;
+    }
+    public QuantityUnits getUnit(){
+        return unit;
     }
     public Products setName(String value) {
         name = value;
@@ -51,7 +54,7 @@ public class Products {
         description = value;
         return this;
     }
-    public Products setMainPicture(String value) {
+    public Products setMainPicture(int value) {
         mainPicture = value;
         return this;
     }

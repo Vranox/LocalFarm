@@ -39,9 +39,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBWgAYTDL5VS5kp4DTwjJ1S8wFmf2PzBmw" />
         <activity
-            android:name=".activity.UserListCommandActivity"
+            android:name=".activity.CommandDetailActivity"
             android:exported="false"
-            android:label="@string/title_user_list_command_activity" />
+            android:label="@string/command_detail_activity" />
         <activity
             android:name=".activity.ProductPageActivity"
             android:exported="false"
@@ -50,10 +50,6 @@
             android:name=".activity.MapActivity"
             android:exported="false"
             android:label="@string/title_activity_map" />
-        <activity
-            android:name=".activity.CommandDetailsActivity"
-            android:exported="false"
-            android:label="@string/list_product_orders" />
 
         <activity
             android:name=".activity.HomepageConnectionActivity"
@@ -83,6 +79,14 @@
             android:label="@string/app_name">
 
         </activity>
+
+        <service
+            android:name=".utils.NotifHandler"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <meta-data
             android:name="preloaded_fonts"

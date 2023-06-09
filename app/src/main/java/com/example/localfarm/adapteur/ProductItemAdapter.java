@@ -44,7 +44,6 @@ public class ProductItemAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         //(1) : Réutilisation des layouts
         View layoutItem = convertView == null ? mInflater.inflate(R.layout.product_command_card, parent, false) : convertView;
-        System.out.println("in adapter: "+ProductList.size());
         Products product = ProductList.get(position);
 
 

@@ -14,7 +14,7 @@
     <string name="dest_text">a XXXXXX</string>
     <string name="title_activity_map">MapsActivity</string>
     <string name="orders">Orders</string>
-    <string name="title_user_list_command_activity">titleUserListCommandActivity</string>
+    <string name="command_detail_activity">titleUserListCommandActivity</string>
     <string name="product_page_activity">productPageActivity</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -1,5 +1,7 @@
 package com.example.localfarm.order;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,14 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.localfarm.R;
+import com.example.localfarm.activity.CommandDetailActivity;
+import com.example.localfarm.models.actor.Account;
+import com.example.localfarm.models.command.Command;
+import com.example.localfarm.models.command.ProductOrder;
+import com.example.localfarm.models.common.Date;
+import com.example.localfarm.models.common.Time;
+import com.example.localfarm.models.products.Products;
+import com.example.localfarm.models.products.QuantityUnits;
 
 import java.util.ArrayList;
 
@@ -68,6 +78,27 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
                 break;
         }
         holder.mStateTextView.setText(stateText);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Action à effectuer lors du clic sur l'élément
+                // Par exemple, afficher une boîte de dialogue, démarrer une autre activité, etc.
+                Context context = holder.itemView.getContext();
+                Intent intent = new Intent(context, CommandDetailActivity.class);
+                Command command = new Command(
+                        new Account("email","passwd","0000 0000","admin","admin","coucou"),
+                        new Account("email","passwd","0000 0000","Dumanois","Arnaud","coucou"),
+                        new Date(2023,6,10),
+                        new Time()
+                );
+                //command.addProduct(ProductOrder.staticList());
+                intent.putExtra(CommandDetailActivity.commandParam,command);
+                // Démarrer la nouvelle activité
+                context.startActivity(intent);
+            }
+        });
+
+
     }
 
     @Override

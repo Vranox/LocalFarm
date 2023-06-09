@@ -28,6 +28,11 @@ import com.example.localfarm.activity.EstablishmentCreationActivity;
 import com.example.localfarm.activity.HomepageConnectionActivity;
 import com.example.localfarm.adapteur.ProfileAdapter;
 import com.example.localfarm.activity.MyEstablishementActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class ProfileFragment extends Fragment {
     private ListView lvOptions;
@@ -176,5 +181,59 @@ public class ProfileFragment extends Fragment {
             }
         });
         return animator;
+    }
+
+    private void logout() {
+
+
+        { //On retire de la data base l'ActiveToken lié a ce compte afin qu'il ne recoive plus de notification.
+            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+            SharedPreferences sharedPrefs = getActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+            String id = sharedPrefs.getString("id", "");
+
+            FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+                @Override
+                public void onComplete(@NonNull Task<String> task) {
+                    System.out.println("Messaging");
+                    String TokenToSuppr = task.getResult();
+                    FirebaseDatabase.getInstance().getReference("account").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>()  {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task){
+                            System.out.println("Database");
+                            if (task.isSuccessful()) {
+                                System.out.println("Database - succeess");
+                                //On parcours tout les utilisateur et on regarde la valeur qu'ils ont dans leur attribut id
+                                for (DataSnapshot childSnapshot : task.getResult().getChildren()) {
+                                    String idFound = childSnapshot.child("id").getValue(String.class);
+                                    System.out.println("id = "+childSnapshot.child("id").getValue(String.class));
+
+                                    // Pour chaque utilisateur on regarde si il a l'id donnée en parametre de fonction
+                                    if (idFound != null && idFound.equals(id)) {
+                                        System.out.println("Found");
+
+
+                                        for(DataSnapshot values : childSnapshot.child("ActiveToken").getChildren()){
+                                            System.out.println(values.getValue(String.class) + " - " + TokenToSuppr);
+                                            if(values.getValue(String.class).equals(TokenToSuppr)){
+                                                values.getRef().removeValue();
+                                                System.out.println("found");
+                                            };
+
+                                        }
+
+                                        break;
+                                    }
+                                }
+                            }
+
+                        }
+                    });
+
+                }
+            });
+        }
+
+        // Déconnectez l'utilisateur ici.
+        // Redirigez l'utilisateur vers l'écran de connexion.
     }
 }
