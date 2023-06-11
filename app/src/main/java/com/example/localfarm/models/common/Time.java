@@ -1,10 +1,15 @@
 package com.example.localfarm.models.common;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import com.google.firebase.database.PropertyName;
 
 import java.util.Calendar;
 
-public class Time implements Comparable<Time>{
+public class Time implements Comparable<Time>, Parcelable {
     @PropertyName("hour")
     private int hour;
     @PropertyName("minutes")
@@ -26,6 +31,24 @@ public class Time implements Comparable<Time>{
         int enumIndex = (calendarDayOfWeek + 5) % 7;
         this.dayOfWeek = DayOfWeek.values()[enumIndex].toString();
     }
+
+    protected Time(Parcel in) {
+        hour = in.readInt();
+        minutes = in.readInt();
+        dayOfWeek = in.readString();
+    }
+
+    public static final Creator<Time> CREATOR = new Creator<Time>() {
+        @Override
+        public Time createFromParcel(Parcel in) {
+            return new Time(in);
+        }
+
+        @Override
+        public Time[] newArray(int size) {
+            return new Time[size];
+        }
+    };
 
     @PropertyName("hour")
     public int getHour() {
@@ -67,5 +90,17 @@ public class Time implements Comparable<Time>{
 
     public String getDayOfWeek() {
         return dayOfWeek;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeInt(hour);
+        parcel.writeInt(minutes);
+        parcel.writeString(dayOfWeek);
     }
 }

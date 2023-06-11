@@ -21,7 +21,9 @@ public class ProductOrder implements Parcelable {
         this.quantity = quantity;
     }
 
+
     protected ProductOrder(Parcel in) {
+        product = in.readParcelable(Products.class.getClassLoader());
         quantity = in.readFloat();
     }
 
@@ -65,6 +67,11 @@ public class ProductOrder implements Parcelable {
         return this.product.name+" "+this.quantity;
     }
 
+
+    public String getQuantityOrdered() {
+        return String.format(product.getUnit().getFormat(),quantity)+product.getUnit();
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -72,10 +79,7 @@ public class ProductOrder implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeParcelable(product, i);
         parcel.writeFloat(quantity);
-    }
-
-    public String getQuantityOrdered() {
-        return String.format(product.getUnit().getFormat(),quantity)+product.getUnit();
     }
 }

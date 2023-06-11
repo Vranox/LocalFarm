@@ -1,8 +1,13 @@
 package com.example.localfarm.models.common;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import java.util.Calendar;
 
-public class Date {
+public class Date implements Parcelable {
     private int year, month, day;
 
     public Date(){
@@ -16,6 +21,24 @@ public class Date {
 
         if (!isValidDate(year, month, day)) reset();
     }
+
+    protected Date(Parcel in) {
+        year = in.readInt();
+        month = in.readInt();
+        day = in.readInt();
+    }
+
+    public static final Creator<Date> CREATOR = new Creator<Date>() {
+        @Override
+        public Date createFromParcel(Parcel in) {
+            return new Date(in);
+        }
+
+        @Override
+        public Date[] newArray(int size) {
+            return new Date[size];
+        }
+    };
 
     private void reset(){
         Calendar calendar = Calendar.getInstance();
@@ -46,5 +69,17 @@ public class Date {
     @Override
     public String toString(){
         return day+"/"+month+"/"+year;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeInt(year);
+        parcel.writeInt(month);
+        parcel.writeInt(day);
     }
 }

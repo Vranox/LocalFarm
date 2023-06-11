@@ -20,10 +20,11 @@ import com.example.localfarm.models.products.Products;
 import com.example.localfarm.models.products.QuantityUnits;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHolder> {
 
-    private ArrayList<Order> mOrderList;
+    private List<Command> mOrderList;
 
     public static class OrderViewHolder extends RecyclerView.ViewHolder {
         public TextView mLabelTextView;
@@ -42,7 +43,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         }
     }
 
-    public OrderAdapter(ArrayList<Order> orderList) {
+    public OrderAdapter(List<Command> orderList) {
         mOrderList = orderList;
     }
 
@@ -55,25 +56,27 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
     @Override
     public void onBindViewHolder(OrderViewHolder holder, int position) {
-        Order currentItem = mOrderList.get(position);
+        Command currentItem = mOrderList.get(position);
 
-        holder.mLabelTextView.setText(currentItem.getLabel());
-        holder.mTotalPriceTextView.setText(String.valueOf(currentItem.getTotalPrice()) + "€");
-        holder.mSourceTextView.setText(currentItem.getSource());
-        holder.mDestinationTextView.setText(currentItem.getDestination());
+        holder.mLabelTextView.setText(currentItem.getDate().toString());
+        holder.mTotalPriceTextView.setText(String.valueOf(String.format("%.2f",currentItem.getTotalPrice())) + "€");
+        holder.mSourceTextView.setText(currentItem.getBuyer().toString());
+        holder.mDestinationTextView.setText(currentItem.getSeller().toString());
 
         String stateText = "";
 
-        switch(currentItem.getState()) {
-            case Delivered:
+        switch(currentItem.getStatus()) {
+            case Completed:
                 stateText = "Livré";
                 break;
-            case Ongoing:
+            case Accepted:
                 stateText = "En cours";
                 break;
-            case Cancelled:
+            case Canceled:
                 stateText = "Annulé";
                 break;
+            case Waiting:
+                stateText = "en attente";
             default:
                 break;
         }
@@ -85,14 +88,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
                 // Par exemple, afficher une boîte de dialogue, démarrer une autre activité, etc.
                 Context context = holder.itemView.getContext();
                 Intent intent = new Intent(context, CommandDetailActivity.class);
-                Command command = new Command(
-                        new Account("email","passwd","0000 0000","admin","admin","coucou"),
-                        new Account("email","passwd","0000 0000","Dumanois","Arnaud","coucou"),
-                        new Date(2023,6,10),
-                        new Time()
-                );
                 //command.addProduct(ProductOrder.staticList());
-                intent.putExtra(CommandDetailActivity.commandParam,command);
+                intent.putExtra(CommandDetailActivity.commandParam,currentItem);
                 // Démarrer la nouvelle activité
                 context.startActivity(intent);
             }

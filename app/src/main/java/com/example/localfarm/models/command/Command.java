@@ -39,11 +39,29 @@ public class Command implements Parcelable {
         System.out.println(getDate());
     }
 
+
     protected Command(Parcel in) {
         id = in.readInt();
         buyer = in.readParcelable(Account.class.getClassLoader());
         seller = in.readParcelable(Account.class.getClassLoader());
+        time = in.readParcelable(Time.class.getClassLoader());
+        date = in.readParcelable(Date.class.getClassLoader());
         productList = in.createTypedArrayList(ProductOrder.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeParcelable(buyer, flags);
+        dest.writeParcelable(seller, flags);
+        dest.writeParcelable(time, flags);
+        dest.writeParcelable(date, flags);
+        dest.writeTypedList(productList);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Command> CREATOR = new Creator<Command>() {
@@ -131,16 +149,14 @@ public class Command implements Parcelable {
         return date.toString();
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+
+    public float getTotalPrice(){
+        float price = 0;
+        for (ProductOrder order : productList) {
+            price += order.getPrice();
+        }
+        return price;
     }
 
-    @Override
-    public void writeToParcel(@NonNull Parcel parcel, int i) {
-        parcel.writeInt(id);
-        parcel.writeParcelable(buyer, i);
-        parcel.writeParcelable(seller, i);
-        parcel.writeTypedList(productList);
-    }
+
 }

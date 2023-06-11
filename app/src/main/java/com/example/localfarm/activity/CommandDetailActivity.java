@@ -58,7 +58,7 @@ public class CommandDetailActivity extends AppCompatActivity {
                 .commit();
 
         ((TextView) findViewById(R.id.CommandDetailActivity_Account)).setText(isProductor?"Producteur: "+command.getSeller().getName():"Client: "+command.getBuyer().getName());
-        //((TextView) findViewById(R.id.CommandDetailActivity_DeliveryDate)).setText("Date: " + command.getDate().toString());
+        ((TextView) findViewById(R.id.CommandDetailActivity_DeliveryDate)).setText("Date: " + command.getDate().toString());
         ((TextView) findViewById(R.id.CommandDetailActivity_DeliveryLocation)).setText("Adresse: "+command.getSeller().getEmail());
 
         ((Button) findViewById(R.id.CommandDetailActivity_CalendarButton)).setOnClickListener((event)->{
@@ -66,16 +66,12 @@ public class CommandDetailActivity extends AppCompatActivity {
         });
 
         ((ImageButton) findViewById(R.id.returnButton)).setOnClickListener((event)->{
-            Intent intentTo = new Intent(this, OrderFragment.class);
+            Intent intentTo = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intentTo);
         });
 
         {
-            float total = 0;
-            for(ProductOrder product : command.getProductList()){
-                total+= product.getPrice();
-            }
-            ((TextView) findViewById(R.id.CommandDetailActivity_TotalPrice)).setText("Prix: "+String.format("%.2f", total)+"€");
+            ((TextView) findViewById(R.id.CommandDetailActivity_TotalPrice)).setText("Prix: "+String.format("%.2f", command.getTotalPrice())+"€");
         }
         {
             Spinner spinner = findViewById(R.id.CommandDetailActivity_CommandStateSpinner);

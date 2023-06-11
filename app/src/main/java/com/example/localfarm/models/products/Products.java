@@ -3,18 +3,42 @@ package com.example.localfarm.models.products;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import com.example.localfarm.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Products {
+public class Products implements Parcelable{
     public String name;
     public int mainPicture;
     public String description;
     public float price;
     public float quantity;
     public QuantityUnits unit;
+
+
+    protected Products(Parcel in) {
+        name = in.readString();
+        mainPicture = in.readInt();
+        description = in.readString();
+        price = in.readFloat();
+        quantity = in.readFloat();
+        unit = in.readParcelable(QuantityUnits.class.getClassLoader());
+    }
+
+    public static final Creator<Products> CREATOR = new Creator<Products>() {
+        @Override
+        public Products createFromParcel(Parcel in) {
+            return new Products(in);
+        }
+
+        @Override
+        public Products[] newArray(int size) {
+            return new Products[size];
+        }
+    };
 
     public static List<Products> staticList(){
         List<Products> list = new ArrayList<>();
@@ -66,4 +90,21 @@ public class Products {
     public String pricePerUnit() {
         return String.format("%.2f",this.price/this.quantity)+"/"+this.unit;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+
+        parcel.writeString(name);
+        parcel.writeInt(mainPicture);
+        parcel.writeString(description);
+        parcel.writeFloat(price);
+        parcel.writeFloat(quantity);
+        parcel.writeParcelable(unit, i);
+    }
+
 }
